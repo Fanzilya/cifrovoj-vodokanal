@@ -1,0 +1,43 @@
+export type DespetcherTest = {
+    img?: string | number,
+    nameMinin?: string,
+    company?: string,
+    statusСonnection?: boolean,
+    volumeProjec?: number,
+    dayEfficiency?: string,
+    hourEfficiency?: string,
+    dispetcher?: boolean,
+    adress?: string,
+    id?: number,
+    operatingOrganization?: string,
+    customerName?: string,
+    generalContractorName?: string,
+    projectEfficiency?: number
+    photoName?: string
+}
+
+export type ObjectFormType = {
+    id?: number,
+    adress: string,
+    operatingOrganization: string,
+    customerName: string,
+    generalContractorName: string,
+    projectEfficiency: number,
+    latitude: string,
+    longitude: string,
+    name: string,
+    fileId: number,
+    hourEfficiency: number,
+    powerConsump: number,
+    waterConsump: number,
+    wetExcessSludge: number,
+    dryExcessSludge: number,
+    trash: number,
+    peskoPulpa: number,
+    aquaPack30: number,
+    aquaFlock650: number,
+    ufoAcid: number,
+    mbrAcid: number,
+    gypochloride: number,
+    objectDiscription: string,
+}

@@ -5,19 +5,27 @@ import { Button } from "../../shared-ui/button/button";
 import { InputContainer } from "../../shared-ui/Inputs/input-container";
 import { Textarea } from "../../shared-ui/textarea";
 import { useAuth } from "../../entities/user/context";
-import { getDostup } from "../../entities/user/utils";
+import { getDostup, isJobRole } from "../../entities/user/utils";
+import { EnginnerCancelPlanedServicesStageInterface, EnginnerCompletePlanedServicesStageInterface, SimpleCompletePlanedServicesInstructionInterface } from "@/packages/entities/planed-services/type";
+import { StageFileList } from "./stage-file-list";
 
 
 interface StageCardProps {
   stage: ServiceStageType,
   footerBlock?: boolean,
   number?: number,
-  completeEngineer?: (data: CompleteEngineerStageType) => void
-  cancelEngineer?: (data: CancelStageType) => void,
+  completeEngineer: (data: CompleteEngineerStageType) => void
+  cancelEngineer: (data: CancelStageType) => void,
   completeCommon: (data: CompleteCommonStageType) => void
+  completePlanetServiceEnginner: (data: EnginnerCompletePlanedServicesStageInterface) => void
+  cancelPlanetServiceEngineer: (data: EnginnerCancelPlanedServicesStageInterface) => void
+  // completePlanetServiceCommon: (data: SimpleCompletePlanedServicesInstructionInterface) => void
+  serviceData?: any,
+  switchShowFile: (id: number, value: boolean) => void
 }
 
-export const StageCard = ({ stage, footerBlock, number, completeEngineer, cancelEngineer, completeCommon }: StageCardProps) => {
+export const StageCard = ({ stage, footerBlock, number, completeEngineer, cancelEngineer, completeCommon, serviceData, completePlanetServiceEnginner, cancelPlanetServiceEngineer, switchShowFile }: StageCardProps) => {
+  const isPlanedService = serviceData.type == "Тех. Обслуживание"
 
   const [descr, setDescr] = useState<string>("")
   const [isCanc, setIsCanc] = useState<boolean>(false)
@@ -30,15 +38,31 @@ export const StageCard = ({ stage, footerBlock, number, completeEngineer, cancel
   const { user } = useAuth()
 
   const onComplete = () => {
-    userDD.isCommandsEnabled ? setIsCancComplete(true) : completeCommon({ stageId: Number(stage.id), discription: descr })
+    if (userDD.isCommandsEnabled) {
+      setIsCancComplete(true)
+    } else {
+      // if (isPlanedService) {
+      //   completePlanetServiceCommon({ stageId: Number(stage.id), discription: descr })
+      // } else {
+      completeCommon({ stageId: Number(stage.id), discription: descr })
+      // }
+    }
   }
 
   const NeedComplete = () => {
-    completeEngineer({ stageId: Number(stage.id), engineerId: user.id, discription: descr })
+    if (isPlanedService) {
+      completePlanetServiceEnginner({ stageId: Number(stage.id), engineerId: user.id, discription: descr })
+    } else {
+      completeEngineer({ stageId: Number(stage.id), engineerId: user.id, discription: descr })
+    }
   }
 
   const needCancel = () => {
-    cancelEngineer({ stageId: stage.id, cancelDiscriprion: descr })
+    if (isPlanedService) {
+      cancelPlanetServiceEngineer({ stageId: stage.id, cancelDiscriprion: descr })
+    } else {
+      cancelEngineer({ stageId: stage.id, cancelDiscriprion: descr })
+    }
   }
 
   const defultBack = () => {
@@ -69,7 +93,6 @@ export const StageCard = ({ stage, footerBlock, number, completeEngineer, cancel
             <p className="text-gray-800 font-medium"> {getDate(stage.closedAt) !== "01.01.1, 00:00" ? getDate(stage.closedAt) : '—'}</p>
           </div>
         </div>
-
 
         <div className="space-y-4">
           <div className="grid grid-cols-2">
@@ -124,16 +147,17 @@ export const StageCard = ({ stage, footerBlock, number, completeEngineer, cancel
             {stage.discription}
           </div>
 
-
           {(stage.cancelDiscription?.length > 0 && stage.cancelDiscription !== "None") && (
             <div className="mt-4 p-3 bg-red-50 rounded-lg border border-red-100">
               <div className="text-xs text-red-700 uppercase tracking-wide mb-1">Причина отмены</div>
               <p className="text-red-800 text-sm">{stage.cancelDiscription}</p>
             </div>
           )}
+
+          {stage.files.length > 0 && <StageFileList files={stage.files} onAction={(id: number) => switchShowFile(id, true)} />}
         </div>
 
-        {stage.currentStatus === "New" && isCanc &&
+        {stage.currentStatus === "New" && isCanc && (
           <InputContainer headerText="Описание" classNames={{ wrapper: "mt-5" }}>
             <Textarea
               placeholder="Описание..."
@@ -142,9 +166,9 @@ export const StageCard = ({ stage, footerBlock, number, completeEngineer, cancel
               className="w-full h-24 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#4A85F6] focus:border-transparent resize-none"
             />
           </InputContainer>
-        }
+        )}
 
-        {stage.currentStatus === "New" && isCancComplete &&
+        {stage.currentStatus === "New" && isCancComplete && (
           <InputContainer headerText="Описание" classNames={{ wrapper: "mt-5" }}>
             <Textarea
               placeholder="Описание..."
@@ -153,13 +177,13 @@ export const StageCard = ({ stage, footerBlock, number, completeEngineer, cancel
               className="w-full h-24 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#4A85F6] focus:border-transparent resize-none"
             />
           </InputContainer>
-        }
+        )}
       </div>
 
       {footerBlock && stage.currentStatus === "New" && (
         <div className="p-4 border-t border-gray-100 bg-gray-50">
           <div className="flex gap-2">
-            {(isCanc || isCancComplete) ?
+            {isJobRole() && ((isCanc || isCancComplete) ?
               <>
                 {isCancComplete &&
                   <>
@@ -190,9 +214,8 @@ export const StageCard = ({ stage, footerBlock, number, completeEngineer, cancel
                 <Button onClick={() => setIsCanc(true)} class="flex-2 py-2.5 px-4 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition-colors">
                   Отменить этап
                 </Button>
-              </>
+              </>)
             }
-
           </div >
         </div>
       )}
