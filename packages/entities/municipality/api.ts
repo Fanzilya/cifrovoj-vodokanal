@@ -1,5 +1,5 @@
-import { instance } from "@/app/api/instances"
-import { MunicipalityRoutes } from "@/app/cores/core-gis/network/api-routes"
+import { MunicipalityRoutes } from "@/src/api/gis-api-routes"
+import { instance } from "@/src/api/instances"
 
 export const getAllMunicipalities = () => {
     return instance.get(MunicipalityRoutes.GetAll)

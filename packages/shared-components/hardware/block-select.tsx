@@ -1,5 +1,5 @@
-import { observer } from 'mobx-react-lite';
 import { Icon } from '@/packages/shared-ui/icon';
+import { observer } from 'mobx-react-lite';
 import { ReactNode, useState } from 'react';
 
 

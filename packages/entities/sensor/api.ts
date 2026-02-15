@@ -1,5 +1,5 @@
-import { SchemaCard } from "@/app/routers/api-router"
-import { reserchInstance } from "@/app/api/instances"
+import { SchemaCard } from "@/src/api/api-router"
+import { reserchInstance } from "@/src/api/instances"
 import { SchemaCardInterface, SchemaCardUpdateInterface } from "./type"
 
 export const ApiSchemaCardCreate = (params: SchemaCardInterface) => {

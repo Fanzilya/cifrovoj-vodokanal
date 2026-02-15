@@ -2,8 +2,8 @@
 //     return instance.get(SewersRoutes.GetByCompanyId, { params })
 // }
 
-import { instance } from "@/app/api/instances"
-import { SewersRoutes } from "@/app/cores/core-gis/network/api-routes"
+import { SewersRoutes } from "@/src/api/gis-api-routes"
+import { instance } from "@/src/api/instances"
 import { GetSewersCompanyId } from "./type"
 
 // export const getSewersByUserId = (params: SewersGetByUserRequest) => {

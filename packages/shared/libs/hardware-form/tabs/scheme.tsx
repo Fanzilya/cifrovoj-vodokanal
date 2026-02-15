@@ -1,10 +1,8 @@
-import { observer } from "mobx-react-lite";
 import { Button } from "@/packages/shared-ui/button/button";
 import { Icon } from "@/packages/shared-ui/icon";
 import { InputContainer } from "@/packages/shared-ui/Inputs/input-container";
 import { Selector } from "@/packages/shared-ui/Selector/selector";
-import { useService } from "../components/service/hook";
-import { ChangeEvent, useState } from "react";
+import { observer } from "mobx-react-lite";
 import { equipmentCreateModel } from "../model/hardware-form-model";
 
 export const Scheme = observer(() => {

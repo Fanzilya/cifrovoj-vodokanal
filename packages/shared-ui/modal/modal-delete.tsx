@@ -2,9 +2,9 @@
 import { Button } from "@/packages/shared-ui/button/button";
 import { Icon } from "@/packages/shared-ui/icon";
 import { observer } from "mobx-react-lite";
-import { ModalDeleteProps } from "./setting/type";
 import { MouseEvent, useCallback, useEffect } from "react";
 import PortalModal from "./portal";
+import { ModalDeleteProps } from "./setting/type";
 
 export const ModalDelete = observer((props: ModalDeleteProps) => {
     const handleClose = useCallback(() => {

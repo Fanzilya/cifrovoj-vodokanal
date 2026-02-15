@@ -1,7 +1,7 @@
-import { reserchInstance } from "@/app/api/instances"
-import { PlanedCommonServices, PlanedServices, PlanedServicesInstruction, PlanedServicesStage } from "@/app/routers/api-router"
-import { AttachMainPlanedServiceInterface, CompletePlanedCommonServicesInterface, CreateAttachPlanedServicesInstructionInterface, CreatePlanedCommonServicesInterface, CreatePlanedServicesInstructionInterface, CreatePlanedServicesStageInterface, CreatePlanedServicesInterface, IdPlanedServicesInterface, EnginnerCompletePlanedServicesStageInterface, EnginnerCancelPlanedServicesStageInterface, SimpleCompletePlanedServicesInstructionInterface, IdPlanedServicesStageInterface } from "./type"
+import { PlanedCommonServices, PlanedServices, PlanedServicesInstruction, PlanedServicesStage } from "@/src/api/api-router"
+import { reserchInstance } from "@/src/api/instances"
 import { HardwareIdInterface, IdHardwareInterface } from "../hardware/type"
+import { AttachMainPlanedServiceInterface, CompletePlanedCommonServicesInterface, CreateAttachPlanedServicesInstructionInterface, CreatePlanedCommonServicesInterface, CreatePlanedServicesInstructionInterface, CreatePlanedServicesInterface, CreatePlanedServicesStageInterface, EnginnerCancelPlanedServicesStageInterface, EnginnerCompletePlanedServicesStageInterface, IdPlanedServicesInterface, IdPlanedServicesStageInterface, SimpleCompletePlanedServicesInstructionInterface } from "./type"
 
 export const getFactWorkTimeApi = (params: HardwareIdInterface) => {
     return reserchInstance.get(PlanedServices.factWorkTime, { params })

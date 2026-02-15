@@ -1,15 +1,15 @@
+import { getColorCommandButton, isHardwareCommands } from '@/modules/dispatcher/features/hardware/functions/hardware-commands';
+import { HardwareControlleProps } from '@/packages/entities/hardware/type';
+import { isAdmin } from '@/packages/entities/user/utils';
+import { ModalCommanActive } from '@/packages/shared-components/hardware-modal-confirms/modal-comman-active';
+import { ConfirmModal } from '@/packages/shared-components/hardware-modal-confirms/modal-confirm';
 import { Button } from '@/packages/shared-ui/button/button';
 import { Icon } from '@/packages/shared-ui/icon';
 import { Input } from '@/packages/shared-ui/Inputs/input-text';
+import Loader from '@/packages/shared-ui/loader/loader';
 import { SwitchButton } from '@/packages/shared-ui/switch-button';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useState } from 'react';
-import { ConfirmModal } from '@/packages/shared-components/hardware-modal-confirms/modal-confirm';
-import { ModalCommanActive } from '@/packages/shared-components/hardware-modal-confirms/modal-comman-active';
-import Loader from '@/packages/shared-ui/loader/loader';
-import { HardwareControlleProps } from '@/packages/entities/hardware/type';
-import { getColorCommandButton, isHardwareCommands } from '@/modules/dispatcher/features/hardware/functions/hardware-commands';
-import { isAdmin } from '@/packages/entities/user/utils';
+import { useState } from 'react';
 
 export const HardwareControlle = observer(({ commands, changeCommands, isActiveCommand, isLoaderCommand, switchIsCommand }: HardwareControlleProps) => {
 

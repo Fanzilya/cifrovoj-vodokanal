@@ -1,13 +1,13 @@
+import { getDocuments } from "@/packages/entities/documents/api";
+import { DocumentsModelType } from "@/packages/entities/documents/type";
+import { createHardware, deleteInfoHardware, getInfoHardware, updateInfoHardware } from "@/packages/entities/hardware/api";
+import { createCharacteristic, createManyCommand, createManyInfo, createOndeCommand, createOndeInfo, deleteCharacteristiс, deleteCommandApi, getCharacteristicAll, getCommandAll, getCommandAllInfo, manyCharacteristic, schemaAll, schemaCoordinatesCreate } from "@/packages/entities/hardware/api-general";
 import { CharacteristicsCreateInterface, HardwareCreateInterface, SchemaCoordinatesCreateType, SchemaModelInterface } from "@/packages/entities/hardware/type-general";
 import { makeAutoObservable } from "mobx";
 import { ChangeEvent } from "react";
-import { Characteristic } from "../components/characteristic/type";
-import { createCharacteristic, createManyCommand, createManyInfo, createOndeCommand, createOndeInfo, deleteCharacteristiс, deleteCommandApi, getCharacteristicAll, getCommandAll, getCommandAllInfo, manyCharacteristic, schemaAll, schemaCoordinatesCreate } from "@/packages/entities/hardware/api-general";
 import { toast } from "react-toastify";
+import { Characteristic } from "../components/characteristic/type";
 import { ControlType, ControlTypeCreate, } from "../components/control/type";
-import { createHardware, deleteInfoHardware, getInfoHardware, updateInfoHardware } from "@/packages/entities/hardware/api";
-import { DocumentsModelType } from "@/packages/entities/documents/type";
-import { getDocuments } from "@/packages/entities/documents/api";
 
 
 class HardwareCreateModel {

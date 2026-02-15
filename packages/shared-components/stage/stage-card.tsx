@@ -1,12 +1,12 @@
+import { EnginnerCancelPlanedServicesStageInterface, EnginnerCompletePlanedServicesStageInterface } from "@/packages/entities/planed-services/type";
 import { useState } from "react";
 import { CancelStageType, CompleteCommonStageType, CompleteEngineerStageType, ServiceStageType } from "../../entities/service-requests/type";
+import { useAuth } from "../../entities/user/context";
+import { getDostup, isJobRole } from "../../entities/user/utils";
 import { getDate } from "../../functions/get-data/get-date";
 import { Button } from "../../shared-ui/button/button";
 import { InputContainer } from "../../shared-ui/Inputs/input-container";
 import { Textarea } from "../../shared-ui/textarea";
-import { useAuth } from "../../entities/user/context";
-import { getDostup, isJobRole } from "../../entities/user/utils";
-import { EnginnerCancelPlanedServicesStageInterface, EnginnerCompletePlanedServicesStageInterface, SimpleCompletePlanedServicesInstructionInterface } from "@/packages/entities/planed-services/type";
 import { StageFileList } from "./stage-file-list";
 
 

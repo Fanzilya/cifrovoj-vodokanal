@@ -1,11 +1,10 @@
 import { Button } from "@/packages/shared-ui/button/button";
 import { Icon } from "@/packages/shared-ui/icon";
-import { observer } from "mobx-react-lite";
-import { InputContainer } from "@/packages/shared-ui/Inputs/input-container";
-import { equipmentCreateModel } from "../model/hardware-form-model";
-import { useControl } from "../components/control/hook";
 import InputCheckbox from "@/packages/shared-ui/Inputs/input-checkbox";
-import { SwitchButton } from "@/packages/shared-ui/switch-button";
+import { InputContainer } from "@/packages/shared-ui/Inputs/input-container";
+import { observer } from "mobx-react-lite";
+import { useControl } from "../components/control/hook";
+import { equipmentCreateModel } from "../model/hardware-form-model";
 
 export const Control = observer(() => {
     const { createControl, listController, createControlOne, deleteCommand } = equipmentCreateModel

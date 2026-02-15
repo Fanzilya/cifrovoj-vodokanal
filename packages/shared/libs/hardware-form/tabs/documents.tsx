@@ -1,9 +1,9 @@
+import { Button } from "@/packages/shared-ui/button/button";
+import { Icon } from "@/packages/shared-ui/icon";
+import { InputContainer } from "@/packages/shared-ui/Inputs/input-container";
 import { observer } from 'mobx-react-lite';
-import { Button } from "@/packages/shared-ui/button/button"
-import { Icon } from "@/packages/shared-ui/icon"
-import { InputContainer } from "@/packages/shared-ui/Inputs/input-container"
-import { equipmentCreateModel } from '../model/hardware-form-model';
 import { useDocuments } from '../components/documents/hook';
+import { equipmentCreateModel } from '../model/hardware-form-model';
 
 export const Documents = observer(() => {
 

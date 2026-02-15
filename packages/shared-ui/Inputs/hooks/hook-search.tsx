@@ -1,5 +1,5 @@
 import { StringKeys } from "@/packages/functions/type/TypeFunctions";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface UseSearchProps<T> {
     data: T[];

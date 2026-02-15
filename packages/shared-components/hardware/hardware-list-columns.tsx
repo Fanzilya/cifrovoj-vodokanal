@@ -1,7 +1,7 @@
-import { TableColumn } from "@/packages/shared-ui/table/types";
-import { getStatusBadge } from "./hardware-status";
 import { HardwareInterface } from "@/packages/entities/hardware/type";
+import { TableColumn } from "@/packages/shared-ui/table/types";
 import { ActivateButton, EditButton } from "./hardware-buttons";
+import { getStatusBadge } from "./hardware-status";
 
 export const columns: TableColumn<HardwareInterface>[] = [
     {

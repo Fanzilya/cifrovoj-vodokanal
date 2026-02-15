@@ -1,5 +1,5 @@
-import { authorizationInstance } from "@/app/api/instances/instance-authorization"
-import { User, UserRoutes } from "@/app/routers/api-router"
+import { User, UserRoutes } from "@/src/api/api-router"
+import { authorizationInstance } from "@/src/api/instances/instance-authorization"
 
 export const getUserById = (params: { id: number }) => {
     return authorizationInstance.get(UserRoutes.getById, { params })

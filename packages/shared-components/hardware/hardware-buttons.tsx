@@ -1,6 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
 import { hardwareListModel } from "@/modules/dispatcher/pages/hardware-list/model/hardware-list-model";
 import { Icon } from "@/packages/shared-ui/icon";
+import { Link } from "react-router-dom";
 
 export const ActivateButton = ({ id }: { id: number }) => (
     <button

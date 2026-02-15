@@ -1,15 +1,15 @@
-import { instance, reserchInstance } from "@/app/api/instances"
-import { authorizationInstance } from "@/app/api/instances/instance-authorization"
-import { WaterCompanyRoutes } from "@/app/cores/core-gis/network/api-routes"
-import { Company, PassportObject } from "@/app/routers/api-router"
+import { Company, PassportObject } from "@/src/api/api-router"
+import { WaterCompanyRoutes } from "@/src/api/gis-api-routes"
+import { instance, reserchInstance } from "@/src/api/instances"
+import { authorizationInstance } from "@/src/api/instances/instance-authorization"
 import { CompanyCreate } from "./type"
 
 export const getAllClientCompanies = () => {
     return instance.get(WaterCompanyRoutes.GetAll)
 }
 
-export const getCompanyOne = (params: {id: number}) => {
-    return authorizationInstance.get(Company.getOne, {params})
+export const getCompanyOne = (params: { id: number }) => {
+    return authorizationInstance.get(Company.getOne, { params })
 }
 
 export const getCompanyByName = () => {

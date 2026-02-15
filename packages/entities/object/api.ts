@@ -1,5 +1,5 @@
-import { NodeIndicates, PassportObject } from "@/app/routers/api-router";
-import { reserchInstance } from "@/app/api/instances";
+import { NodeIndicates, PassportObject } from "@/src/api/api-router";
+import { reserchInstance } from "@/src/api/instances";
 import { PassportDataType } from "./type";
 
 

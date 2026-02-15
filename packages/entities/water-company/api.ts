@@ -1,6 +1,6 @@
 
-import { instance } from "@/app/api/instances"
-import { WaterCompanyRoutes } from "@/app/cores/core-gis/network/api-routes"
+import { WaterCompanyRoutes } from "@/src/api/gis-api-routes"
+import { instance } from "@/src/api/instances"
 import { GetWaterCompanyOperatorsRequest } from "./types"
 
 // export const getAllCompanies = () => {

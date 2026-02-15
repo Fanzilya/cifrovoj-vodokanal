@@ -1,5 +1,5 @@
-import { instance } from "@/app/api/instances"
-import { OrderRoutes, UserRoutes } from "@/app/cores/core-gis/network/api-routes"
+import { OrderRoutes, UserRoutes } from "@/src/api/gis-api-routes"
+import { instance } from "@/src/api/instances"
 
 export const getAllOrders = () => {
     return instance.get(OrderRoutes.GetAll)

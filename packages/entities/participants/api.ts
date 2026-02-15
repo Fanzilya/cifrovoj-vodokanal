@@ -1,7 +1,7 @@
-import { authorizationInstance } from "@/app/api/instances/instance-authorization"
-import { PassportObject, User, UserRoutes } from "@/app/routers/api-router"
-import { UserAttachCompanyType, CreateParticipantType, AttachCompanyType } from "./type"
-import { reserchInstance } from "@/app/api/instances"
+import { PassportObject, User, UserRoutes } from "@/src/api/api-router"
+import { reserchInstance } from "@/src/api/instances"
+import { authorizationInstance } from "@/src/api/instances/instance-authorization"
+import { AttachCompanyType, CreateParticipantType, UserAttachCompanyType } from "./type"
 
 
 

@@ -1,5 +1,5 @@
-import { Documents } from "@/app/routers/api-router"
-import { reserchInstance } from "@/app/api/instances"
+import { Documents } from "@/src/api/api-router"
+import { reserchInstance } from "@/src/api/instances"
 import { DocumentsType, UploadObjectDocumentType } from "./type"
 
 export const createDocuments = (params: DocumentsType) => {

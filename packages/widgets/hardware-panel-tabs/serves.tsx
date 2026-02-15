@@ -2,16 +2,13 @@ import { Icon } from '@/packages/shared-ui/icon';
 import { observer } from 'mobx-react-lite';
 import { BlockSelect } from '../../shared-components/hardware/block-select';
 // import { everyKapitalServerDate, everyPlanerServerDate } from '../../data/hardware-serves-data';
-import { InfoObject } from '../../shared-components/hardware/info-object';
-import InputCheckbox from '@/packages/shared-ui/Inputs/input-checkbox';
-import { Link } from 'react-router-dom';
-import { Modal } from '@/packages/shared-ui/modal/modal';
-import { Button } from '@/packages/shared-ui/button/button';
-import { useState } from 'react';
 import { HardwareServesProps } from '@/packages/entities/hardware/type';
-import { useAuth } from '@/packages/entities/user/context';
-import { isAdmin, isJobRole } from '@/packages/entities/user/utils';
-import { Role } from '@/packages/entities/user/enums';
+import { isJobRole } from '@/packages/entities/user/utils';
+import { Button } from '@/packages/shared-ui/button/button';
+import InputCheckbox from '@/packages/shared-ui/Inputs/input-checkbox';
+import { Modal } from '@/packages/shared-ui/modal/modal';
+import { useState } from 'react';
+import { InfoObject } from '../../shared-components/hardware/info-object';
 
 export const HardwareServes = observer(({ getCommands, servicesWeek, checkedService, idHardware, missedService }: HardwareServesProps) => {
 

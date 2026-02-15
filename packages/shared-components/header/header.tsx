@@ -1,11 +1,11 @@
+import { useAuth } from "@/packages/entities/user/context";
 import { Icon } from "@/packages/shared-ui/icon";
 import { observer } from "mobx-react-lite";
-import { useAuth } from "@/packages/entities/user/context";
 
-import logo from "../../../app/static/img/logo.png";
-import illyas from "./assets/iilyas.png";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/packages/shared-ui/button/button";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import logo from "../../../src/app/static/img/logo.png";
+import illyas from "./assets/iilyas.png";
 
 export const Header = observer(() => {
     const navigate = useNavigate();

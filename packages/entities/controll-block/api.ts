@@ -1,5 +1,5 @@
-import { reserchInstance } from "@/app/api/instances"
-import { ControlBlock } from "@/app/routers/api-router"
+import { ControlBlock } from "@/src/api/api-router"
+import { reserchInstance } from "@/src/api/instances"
 
 export const getOneObjectData = (params: { id: number }) => {
     return reserchInstance.get(ControlBlock.getOne, { params })

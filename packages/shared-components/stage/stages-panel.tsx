@@ -1,18 +1,18 @@
-import { Modal } from "@/packages/shared-ui/modal/modal";
-import { serviceStagesModel } from "../../../modules/dispatcher/features/service-stage/models/model";
-import { observer } from "mobx-react-lite";
-import Loader from "@/packages/shared-ui/loader/loader";
-import { useEffect, useState } from "react";
-import { Button } from "@/packages/shared-ui/button/button";
-import { StageCard } from "@/packages/shared-components/stage/stage-card";
-import { useAuth } from "@/packages/entities/user/context";
-import { CompleteCancelType, ServiceForStageCardInterface } from "@/packages/entities/service-requests/type";
-import { getDostup, isJobRole } from "@/packages/entities/user/utils";
-import { StageSupplyCard } from "./stage-supply-card";
-import { isStageSupplyTypes } from "@/packages/functions/is-value/is-stage-types";
 import { CompletePlanedCommonServicesInterface } from "@/packages/entities/planed-services/type";
-import { StageFormCreate } from "./stage-form-create";
+import { CompleteCancelType, ServiceForStageCardInterface } from "@/packages/entities/service-requests/type";
+import { useAuth } from "@/packages/entities/user/context";
+import { getDostup, isJobRole } from "@/packages/entities/user/utils";
+import { isStageSupplyTypes } from "@/packages/functions/is-value/is-stage-types";
+import { StageCard } from "@/packages/shared-components/stage/stage-card";
+import { Button } from "@/packages/shared-ui/button/button";
 import { FileViewer } from "@/packages/shared-ui/file-viewer";
+import Loader from "@/packages/shared-ui/loader/loader";
+import { Modal } from "@/packages/shared-ui/modal/modal";
+import { observer } from "mobx-react-lite";
+import { useEffect, useState } from "react";
+import { serviceStagesModel } from "../../../modules/dispatcher/features/service-stage/models/model";
+import { StageFormCreate } from "./stage-form-create";
+import { StageSupplyCard } from "./stage-supply-card";
 
 interface ServiceStagesPanelProps {
   show: boolean;

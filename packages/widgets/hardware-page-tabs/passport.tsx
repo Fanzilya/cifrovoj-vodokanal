@@ -1,17 +1,17 @@
+import accident from "@/app/static/img/accident.svg";
+import { svodStatistics } from "@/packages/entities/hardware/data";
+import { HardwarePassportProps } from "@/packages/entities/hardware/type";
+import { LogEventCard } from "@/packages/shared-components/log-event-card";
+import { Button } from "@/packages/shared-ui/button/button";
+import { FileViewer } from "@/packages/shared-ui/file-viewer";
 import { Icon } from "@/packages/shared-ui/icon";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { getValue } from "../../functions/get-data/get-hardware-functions";
-import { HardwarePassportProps } from "@/packages/entities/hardware/type";
-import { getHardwareStatus } from "../../shared-components/hardware/hardware-status";
-import accident from "@/app/static/img/accident.svg";
 import { Link } from "react-router-dom";
+import { getValue } from "../../functions/get-data/get-hardware-functions";
+import { getHardwareStatus } from "../../shared-components/hardware/hardware-status";
 import { PassportBlockContainer } from "../../shared-components/hardware/passport-block-container";
-import { svodStatistics } from "@/packages/entities/hardware/data";
-import { LogEventCard } from "@/packages/shared-components/log-event-card";
-import { Button } from "@/packages/shared-ui/button/button";
 import { HardwareEventsPanel } from "./events-panel";
-import { FileViewer } from "@/packages/shared-ui/file-viewer";
 
 export const HardwarePassport = observer(({ getInfoNodeInfoAll, evengLogLinksTo, model, documents, сharacteristic, commandsInfo, incidentList, status, evengLog = "none" }: HardwarePassportProps) => {
 

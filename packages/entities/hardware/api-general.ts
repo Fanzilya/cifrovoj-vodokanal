@@ -1,9 +1,9 @@
-import { Characteristics, Command, Control, ControlBlock, Documents, NodeIndicates, PassportObject, Schema, SchemaCooradinate, Service } from "@/app/routers/api-router"
+import { Characteristics, Command, Control, ControlBlock, NodeIndicates, PassportObject, Schema, SchemaCooradinate, Service } from "@/src/api/api-router"
 
-import { reserchInstance } from "@/app/api/instances"
+import { reserchInstance } from "@/src/api/instances"
 
-import { CharacteristicsCreateInterface, CharacteristicsCreateManyInterface, ObjectInfoInterface, SchemaCoordinatesCreateType, SchemaCreateType } from "./type-general"
 import { ControlTypeCreate, ControlTypeCreateMany } from "@/modules/dispatcher/pages/hardware-form/components/control/type"
+import { CharacteristicsCreateInterface, CharacteristicsCreateManyInterface, ObjectInfoInterface, SchemaCoordinatesCreateType, SchemaCreateType } from "./type-general"
 
 export const NodeInfoSingle = (params: { id: number }) => {
     return reserchInstance.get(Control.single, { params })

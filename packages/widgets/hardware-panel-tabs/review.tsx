@@ -1,7 +1,7 @@
-import { observer } from 'mobx-react-lite';
-import { Icon } from "@/packages/shared-ui/icon"
-import { useEffect } from 'react';
 import { HardwareReviewProps } from '@/packages/entities/hardware/type';
+import { Icon } from "@/packages/shared-ui/icon";
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 import { getValue } from '../../functions/get-data/get-hardware-functions';
 
 export const HardwareReview = observer(({ сharacteristic, getInfoNodeInfoAll, commandsInfo, documents, data }: HardwareReviewProps) => {

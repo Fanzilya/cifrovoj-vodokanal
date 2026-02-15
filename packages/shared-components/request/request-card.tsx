@@ -1,8 +1,6 @@
 import { getRequestTypeColor, getStatusColor } from '@/modules/dispatcher/widgets/service-request/functions';
 import { getDate } from '@/packages/functions/get-data/get-date';
-import { Button } from '@/packages/shared-ui/button/button';
 import { Link } from 'react-router-dom';
-import { useEffect } from "react"
 
 type RequestCardProps = {
     request: any,

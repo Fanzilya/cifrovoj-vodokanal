@@ -1,5 +1,5 @@
-import { Hardware, NodeIndicates } from "@/app/routers/api-router"
-import { reserchInstance } from "@/app/api/instances"
+import { Hardware, NodeIndicates } from "@/src/api/api-router"
+import { reserchInstance } from "@/src/api/instances"
 import { CreateHardwareInterface, HardwareEventsType } from "./type"
 
 export const getAllHardware = () => {

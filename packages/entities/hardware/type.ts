@@ -66,7 +66,7 @@ export interface HardwareControlleProps {
     isActiveCommandModal: boolean,
     isLoaderCommand: boolean,
     switchIsCommand: () => void,
-    
+
     evengLog?: HardwareEventsDataType[],
 }
 

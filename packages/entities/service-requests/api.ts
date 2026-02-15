@@ -1,7 +1,7 @@
-import { reserchInstance } from "@/app/api/instances"
-import { CancelStageType, CompleteCancelType, CompleteCommonStageType, CompleteEngineerStageType, FormCommonServiceModelType, ServiceStageType } from "./type"
-import { ServiceRequests, ServiceStageRequests } from "@/app/routers/api-router"
+import { ServiceRequests, ServiceStageRequests } from "@/src/api/api-router"
+import { reserchInstance } from "@/src/api/instances"
 import { IncedentRequestType } from "../incident/type"
+import { CancelStageType, CompleteCancelType, CompleteCommonStageType, CompleteEngineerStageType, FormCommonServiceModelType, ServiceStageType } from "./type"
 
 
 // ServiceRequests
