@@ -1,50 +1,131 @@
-import { useCallback, useEffect, useState } from "react";
-import { observer } from "mobx-react-lite";
-import { View, Text, TextInput, Pressable, Alert, KeyboardAvoidingView, Platform } from "react-native";
-import Toast from "react-native-toast-message";
-import { useAuth } from "@/src/packages/entities/user/context";
 import loginModel from "@/src/features/auth/login/login-model";
-import { useNavigation } from "expo-router";
+import { useAuth } from "@/src/packages/entities/user/context";
+import { InputContainer } from "@/src/packages/shared-ui/Inputs/input-container";
+import { Password } from "@/src/packages/shared-ui/Inputs/input-password";
+import { Input } from "@/src/packages/shared-ui/Inputs/input-text";
+import { Button } from "@/src/packages/shared-ui/button/button";
+import { observer } from "mobx-react-lite";
+import { useCallback, useState } from "react";
+import {
+  KeyboardAvoidingView,
+  Modal,
+  Platform,
+  Pressable,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
+interface RegistrationProps {
+  show: boolean;
+  onClose: () => void;
+}
+
+/** Заглушка экрана заявки на регистрацию */
+const Registration: React.FC<RegistrationProps> = ({ show, onClose }) => (
+  <Modal visible={show} transparent animationType="fade">
+    {/* Полупрозрачный фон */}
+    <Pressable className="flex-1 justify-center items-center bg-black/50 p-6" onPress={onClose}>
+      {/* Модальное окно */}
+      <Pressable
+        className="w-full max-w-[320] bg-white rounded-2xl p-6 items-center"
+        onPress={() => { }}
+      >
+        <Text className="text-lg font-bold text-gray-900 mb-2">Заявка на регистрацию</Text>
+        <Text className="text-sm text-gray-500 mb-5">Функция в разработке</Text>
+        <TouchableOpacity
+          className="bg-blue-600 px-6 py-3 rounded-lg active:bg-blue-700"
+          onPress={onClose}
+        >
+          <Text className="text-white text-base font-semibold">Закрыть</Text>
+        </TouchableOpacity>
+      </Pressable>
+    </Pressable>
+  </Modal>
+);
 
 export const LoginView = observer(() => {
-    const { setUser, initCompany } = useAuth();
-    const [isRegister, setIsRegister] = useState<boolean>(false);
-    const { model, validError, isLoading, canSubmit, isErrorStart, login } = loginModel;
-    const navigation = useNavigation();
+  const [isRegister, setIsRegister] = useState(false);
+  const { setUser, initCompany, initTriecoCompany } = useAuth();
+  const { model, validError, isLoading, canSubmit, isErrorStart, login } = loginModel;
 
-    const handleSubmit = useCallback(() => {
-        if (!canSubmit) return;
-        login(setUser, initCompany, navigation);
-    }, [canSubmit, login]);
+  const handleSubmit = useCallback(() => {
+    login(setUser, initCompany, initTriecoCompany);
+  }, [login, setUser, initCompany, initTriecoCompany]);
 
-    useEffect(() => {
-        const logoutInfo = localStorage.getItem("logout");
-        if (logoutInfo) {
-            Toast.show({
-                type: "info",
-                text1: logoutInfo,
-                visibilityTime: 3000,
-            });
-        }
-        localStorage.clear();
-    }, []);
+  return (
+    <>
+      <Registration show={isRegister} onClose={() => setIsRegister(false)} />
 
-    return (
-        <>
-            {/* <Registration show={isRegister} onClose={() => setIsRegister(false)} /> */}
+      <KeyboardAvoidingView
+        className="flex-1"
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 0}
+      >
+        <View className="flex-1 justify-center items-center px-4 py-8">
+          {/* Карточка формы */}
+          <View className="w-full max-w-[500] bg-white rounded-2xl border border-gray-100 shadow-lg elevation-4">
+            <View className="p-6">
+              {/* Заголовок */}
+              <View className="items-center mb-6">
+                <Text className="text-2xl font-bold text-gray-900 mb-2">Авторизация</Text>
+                <Text className="text-sm text-gray-500">Войдите в систему для продолжения работы</Text>
+              </View>
 
-            <KeyboardAvoidingView
-                behavior={Platform.OS === "ios" ? "padding" : "height"}
-                className="flex-1 justify-center px-4 bg-gray-50"
-            >
-                {/* Основной контейнер формы */}
-                <View className="bg-white rounded-2xl shadow-lg border border-gray-100 w-full max-w-xs mx-auto overflow-hidden">
-                    <Text>ФОРМА</Text>
-                </View>
-            </KeyboardAvoidingView>
+              {/* Форма */}
+              <View className="gap-y-5">
+                <InputContainer
+                  classNames={{ wrapper: "", header: "" }}
+                  headerText="Электронная почта"
+                  isRequired
+                  validText={validError.username}
+                >
+                  <Input
+                    placeholder="Введите электронную почту"
+                    value={model.username}
+                    onChange={loginModel.setEmail}
+                    disabled={isLoading}
+                    type="email"
+                    isError={isErrorStart && !!validError.username}
+                  />
+                </InputContainer>
 
-            {/* Toast сообщения */}
-            <Toast />
-        </>
-    );
+                <InputContainer
+                  classNames={{ wrapper: "", header: "" }}
+                  headerText="Пароль"
+                  isRequired
+                  validText={validError.password}
+                >
+                  <Password
+                    placeholder="Введите пароль"
+                    value={model.password}
+                    onChange={loginModel.setPassword}
+                    disabled={isLoading}
+                    isError={isErrorStart && !!validError.password}
+                  />
+                </InputContainer>
+
+                <Button
+                  onPress={handleSubmit}
+                  disabled={!canSubmit}
+                  styleColor="blue"
+                  className="w-full mt-2 py-3.5 bg-blue-600 active:bg-blue-700 shadow-md shadow-blue-400/50 elevation-2"
+                >
+                  {isLoading ? "Загрузка..." : "Вход"}
+                </Button>
+
+                <TouchableOpacity
+                  className="py-3 items-center active:opacity-70"
+                  onPress={() => setIsRegister(true)}
+                >
+                  <Text className="text-sm font-semibold text-blue-600">Заявка на регистрацию в системе</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </View>
+      </KeyboardAvoidingView>
+    </>
+  );
 });

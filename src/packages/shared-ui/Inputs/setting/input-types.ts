@@ -62,7 +62,8 @@ export type SearchType = {
 export type PasswordInputType = {
     value?: string;
     placeholder?: string;
-    classNames: {
+    /** Веб: Tailwind-классы. RN: не используется, стили через style */
+    classNames?: {
         container?: string;
         input?: string;
         icon?: string;

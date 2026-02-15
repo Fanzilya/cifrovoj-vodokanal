@@ -1,8 +1,8 @@
-import { InputTextType } from "./setting/input-types";
 import { useState } from "react";
-import { View, TextInput, TextInputProps, StyleSheet, StyleProp, ViewStyle } from "react-native";
-import MaskInput from "react-native-mask-input";
+import { StyleProp, StyleSheet, TextInput, View, ViewStyle } from "react-native";
+import MaskInput, { type Mask } from "react-native-mask-input";
 import { phoneMask } from "./setting/input-mask";
+import { InputTextType } from "./setting/input-types";
 
 // Переопределяем типы для React Native
 export const Input = (props: InputTextType) => {
@@ -36,12 +36,15 @@ export const Input = (props: InputTextType) => {
         props.onFocus?.(false);
     };
 
-    // Цвет границы
+    const BORDER_ACCENT = "#4A85F6";
+    const BORDER_ERROR = "#CB0D0D";
+    const BORDER_DEFAULT = "#d1d5db";
+
     const borderColor = isFocused
-        ? "var(--clr-accent)" // или '#007AFF' (синий цвет RN)
+        ? BORDER_ACCENT
         : props.isError
-            ? "var(--clr-error)" // или '#ff3b30'
-            : "var(--clr-border-gray)"; // или '#d1d1d6'
+            ? BORDER_ERROR
+            : BORDER_DEFAULT;
 
     // Объединяем стили
     const containerStyle: StyleProp<ViewStyle> = [
@@ -59,7 +62,7 @@ export const Input = (props: InputTextType) => {
             return (
                 <MaskInput
                     value={props.value?.toString() || ""}
-                    mask={phoneMask}
+                    mask={phoneMask as Mask}
                     onChangeText={handleChange}
                     placeholder={props.placeholder}
                     onFocus={handleFocus}
@@ -73,7 +76,7 @@ export const Input = (props: InputTextType) => {
 
         return (
             <TextInput
-                value={props.value?.toString()}
+                value={props.value?.toString() ?? ""}
                 placeholder={props.placeholder}
                 onChangeText={handleChange}
                 onFocus={handleFocus}

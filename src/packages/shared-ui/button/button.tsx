@@ -1,69 +1,111 @@
-import { StyleColor, styleColorEnum } from "./config";
+import type { ReactNode } from "react";
+import type { StyleProp, ViewStyle } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleColor } from "./config";
+
+const ACCENT = "#4A85F6";
+const ACCENT_DARK = "#3a6bc9";
+const ACCENT_ACTIVE = "#2a52a0";
 
 type Props = {
-  children?: React.ReactNode;
-  className?: string;
-  onClick?: (e: any) => void;
+  children?: ReactNode;
+  onPress?: () => void;
   disabled?: boolean;
-  type?: "button" | "submit" | "reset";
-  style?: React.CSSProperties;
+  style?: StyleProp<ViewStyle>;
   styleColor?: StyleColor;
+  /** Для совместимости с веб: передаётся в onPress */
+  type?: "button" | "submit" | "reset";
 };
 
-// Цветовые классы для кнопок
-const colorClasses: Record<StyleColor, string> = {
-  blue: "bg-[#4A85F6] text-white hover:bg-[#3a6bc9] active:bg-[#2a52a0] shadow-sm hover:shadow-md",
-  blueOutline: "border border-[#4A85F6] text-[#4A85F6] bg-white hover:bg-[#4A85F6] hover:text-white shadow-sm hover:shadow-md",
-  gray: "bg-gray-100 text-gray-700 hover:bg-gray-200 active:bg-gray-300 shadow-sm hover:shadow-md",
-  red: "bg-red-600 text-white hover:bg-red-700 active:bg-red-800 shadow-sm hover:shadow-md",
-  green: "bg-green-600 text-white hover:bg-green-700 active:bg-green-800 shadow-sm hover:shadow-md",
-  white: "bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 active:bg-gray-100 shadow-sm hover:shadow-md"
+const colorStyles: Record<StyleColor, { container: ViewStyle; text: { color: string } }> = {
+  blue: { container: { backgroundColor: ACCENT }, text: { color: "#fff" } },
+  blueOutline: {
+    container: { backgroundColor: "transparent", borderWidth: 1, borderColor: ACCENT },
+    text: { color: ACCENT },
+  },
+  gray: { container: { backgroundColor: "#f3f4f6" }, text: { color: "#374151" } },
+  red: { container: { backgroundColor: "#dc2626" }, text: { color: "#fff" } },
+  green: { container: { backgroundColor: "#16a34a" }, text: { color: "#fff" } },
+  greenOutline: {
+    container: { backgroundColor: "transparent", borderWidth: 1, borderColor: "#22c55e" },
+    text: { color: "#22c55e" },
+  },
+  redOutline: {
+    container: { backgroundColor: "transparent", borderWidth: 1, borderColor: "#ef4444" },
+    text: { color: "#ef4444" },
+  },
+  grayOutline: {
+    container: { backgroundColor: "transparent", borderWidth: 1, borderColor: "#6b7280" },
+    text: { color: "#6b7280" },
+  },
+  yellow: { container: { backgroundColor: "#fde047" }, text: { color: "#854d0e" } },
 };
 
-export const Button = (props: Props) => {
+export const Button: React.FC<Props> = (props) => {
   const {
     children,
-    className = "",
-    onClick,
+    onPress,
     disabled = false,
-    type = "button",
     style,
-    styleColor = "blue"
+    styleColor = "blue",
+    type = "button",
   } = props;
 
-  // Получаем классы для выбранного цвета
-  const buttonColorClass = colorClasses[styleColor] || colorClasses.blue;
-  
-  // Классы для disabled состояния
-  const disabledClasses = disabled 
-    ? "opacity-50 cursor-not-allowed bg-gray-300 text-gray-500 hover:bg-gray-300 hover:text-gray-500 shadow-none" 
-    : "";
+  const colorSet = colorStyles[styleColor] ?? colorStyles.blue;
+
+  const handlePress = () => {
+    if (disabled) return;
+    onPress?.();
+  };
 
   return (
-    <button
-      name="button"
-      type={type}
+    <Pressable
       disabled={disabled}
-      className={`
-        flex items-center justify-center 
-        px-4 py-2.5 
-        font-medium rounded-lg 
-        transition-all duration-200 
-        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4A85F6]
-        ${buttonColorClass}
-        ${disabledClasses}
-        ${className}
-      `}
-      onClick={(e) => {
-        if (type !== "submit") {
-          e.preventDefault();
-          e.stopPropagation();
-        }
-        onClick?.(e);
-      }}
-      style={style}
+      onPress={handlePress}
+      style={({ pressed }) => [
+        styles.base,
+        colorSet.container,
+        disabled && styles.disabled,
+        pressed && !disabled && styles.pressed,
+        style,
+      ]}
+      accessibilityRole="button"
     >
-      {children}
-    </button>
+      {typeof children === "string" ? (
+        <Text style={[styles.text, colorSet.text, disabled && styles.textDisabled]}>{children}</Text>
+      ) : (
+        <View style={styles.content}>{children}</View>
+      )}
+    </Pressable>
   );
 };
+
+const styles = StyleSheet.create({
+  base: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 8,
+    minHeight: 44,
+  },
+  content: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  text: {
+    fontSize: 16,
+    fontWeight: "600",
+  },
+  textDisabled: {
+    color: "#9ca3af",
+  },
+  disabled: {
+    opacity: 0.6,
+  },
+  pressed: {
+    opacity: 0.9,
+  },
+});
