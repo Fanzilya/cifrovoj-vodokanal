@@ -1,0 +1,33 @@
+
+import { WaterCompanyRoutes } from "@/src/api/gis-api-routes"
+import { instance } from "@/src/api/instances"
+import { CreateCompanyRequest, DeleteCompanyRequest, GetWaterCompanyByUserRequest, GetWaterCompanyOperatorsRequest, GetWaterCompanyRequest } from "./types"
+import { Operator } from "../operator/type"
+
+export const getAllCompanies = () => {
+    return instance.get(WaterCompanyRoutes.GetAll)
+}
+
+export const createCompany = (data: CreateCompanyRequest) => {
+    return instance.post(WaterCompanyRoutes.Create, data)
+}
+
+export const deleteCompany = (params: DeleteCompanyRequest) => {
+    return instance.delete(WaterCompanyRoutes.Delete, { params })
+}
+
+export const getWaterCompany = (params: GetWaterCompanyRequest) => {
+    return instance.get(WaterCompanyRoutes.Get, { params })
+}
+
+export const getWaterCompanyByUserId = (params: GetWaterCompanyByUserRequest) => {
+    return instance.get(WaterCompanyRoutes.GetByUserId, { params })
+}
+
+export const getWaterCompanyOperators = (params: GetWaterCompanyOperatorsRequest) => {
+    return instance.get(WaterCompanyRoutes.GetAllOperators, { params })
+}
+
+export const createWaterCompanyOperator = (data: Operator) => {
+    return instance.post(WaterCompanyRoutes.CreateOperator, data)
+}
