@@ -21,19 +21,20 @@ export type InputContainerType = {
 export type InputTextType = {
     value: number | string | undefined;
     placeholder?: string;
-    type: HTMLInputTypeAttribute;
-    className?: string;
+    type?: HTMLInputTypeAttribute;
+    className?: string; // игнорируется, но оставлен для совместимости
     disabled?: boolean;
-    style?: React.CSSProperties;
+    style?: object; // React.CSSProperties → object (подходит для RN)
     isError?: boolean;
     minValue?: number;
     maxValue?: number;
     lengthOptions?: { minLength?: number; maxLength?: number };
 
     onChange?: (value: string) => void;
-    onFocus?: (value: boolean) => void;
+    onFocus?: (focused: boolean) => void;
     readonly?: boolean;
 };
+
 
 export type SearchType = {
     value: number | string;
@@ -61,7 +62,8 @@ export type SearchType = {
 export type PasswordInputType = {
     value?: string;
     placeholder?: string;
-    classNames: {
+    /** Веб: Tailwind-классы. RN: не используется, стили через style */
+    classNames?: {
         container?: string;
         input?: string;
         icon?: string;

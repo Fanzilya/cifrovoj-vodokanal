@@ -1,18 +1,14 @@
-import { HeaderMobile } from "@/packages/shared-components/header/header-mobile";
+import "@/global.css";
 import { Slot } from "expo-router";
-import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-  
-const RootLayout: React.FC = () => {
+import { AuthProvider } from "../packages/entities/user/context";
+
+export default function RootLayout() {
   return (
-    <SafeAreaProvider>
-
-      <HeaderMobile />
-      {/* <StatusBar style="auto" /> */}
-
-      <Slot />
-    </SafeAreaProvider>
+    <AuthProvider>
+      <SafeAreaProvider>
+        <Slot />
+      </SafeAreaProvider>
+    </AuthProvider>
   );
 };
-
-export default RootLayout;
