@@ -1,6 +1,5 @@
 // src/app/(moduls)/(auth)/menu-moduls.tsx
-import { useAuth } from "@/src/packages/entities/user/context";
-import { Role } from "@/src/packages/entities/user/enums";
+import { Role } from "@/packages/entities/user/enums";
 import { Link } from "expo-router";
 import { observer } from "mobx-react-lite";
 import { Pressable, Text, View } from "react-native";
@@ -44,9 +43,7 @@ export const cartLinks: MenuItemType[] = [
     },
 ];
 
-export const MenuModulsView = observer(() => {
-    const { user } = useAuth();
-
+const MenuModulsView = observer(() => {
     return (
         <View className="w-full max-w-[664px] bg-white rounded-2xl border border-gray-100 p-8 mx-auto shadow-lg">
             {/* Header */}
@@ -89,3 +86,6 @@ export const MenuModulsView = observer(() => {
         </View>
     );
 });
+
+
+export default MenuModulsView;

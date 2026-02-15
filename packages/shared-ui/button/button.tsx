@@ -12,6 +12,7 @@ type Props = {
   onPress?: () => void;
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
+  className?: string;
   styleColor?: StyleColor;
   /** Для совместимости с веб: передаётся в onPress */
   type?: "button" | "submit" | "reset";
@@ -47,6 +48,7 @@ export const Button: React.FC<Props> = (props) => {
     onPress,
     disabled = false,
     style,
+    className,
     styleColor = "blue",
     type = "button",
   } = props;
@@ -60,6 +62,7 @@ export const Button: React.FC<Props> = (props) => {
 
   return (
     <Pressable
+      className={className}
       disabled={disabled}
       onPress={handlePress}
       style={({ pressed }) => [

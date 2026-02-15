@@ -1,9 +1,10 @@
+import { useAuth } from "@/packages/entities/user/context";
+import { InputContainer } from "@/packages/shared-ui/Inputs/input-container";
+import { Password } from "@/packages/shared-ui/Inputs/input-password";
+import { Input } from "@/packages/shared-ui/Inputs/input-text";
+import { Button } from "@/packages/shared-ui/button/button";
 import loginModel from "@/src/features/auth/login/login-model";
-import { useAuth } from "@/src/packages/entities/user/context";
-import { InputContainer } from "@/src/packages/shared-ui/Inputs/input-container";
-import { Password } from "@/src/packages/shared-ui/Inputs/input-password";
-import { Input } from "@/src/packages/shared-ui/Inputs/input-text";
-import { Button } from "@/src/packages/shared-ui/button/button";
+import { useNavigation } from "expo-router";
 import { observer } from "mobx-react-lite";
 import { useCallback, useState } from "react";
 import {
@@ -18,7 +19,7 @@ import {
     View
 } from "react-native";
 
-const logo = require("@/assets/images/logo.png")
+const logo = require("@/src/assets/images/logo.png")
 
 interface RegistrationProps {
     show: boolean;
@@ -48,13 +49,14 @@ const Registration: React.FC<RegistrationProps> = ({ show, onClose }) => (
     </Modal>
 );
 
-export const LoginScreen = observer(() => {
+const LoginScreen = observer(() => {
+    
     const [isRegister, setIsRegister] = useState(false);
     const { setUser, initCompany, initTriecoCompany } = useAuth();
     const { model, validError, isLoading, canSubmit, isErrorStart, login } = loginModel;
 
     const handleSubmit = useCallback(() => {
-        login(setUser, initCompany, initTriecoCompany);
+        login(setUser, initCompany);
     }, [login, setUser, initCompany, initTriecoCompany]);
 
     return (
@@ -173,3 +175,6 @@ export const LoginScreen = observer(() => {
         </>
     );
 });
+
+
+export default LoginScreen;
