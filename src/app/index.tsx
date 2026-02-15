@@ -8,6 +8,6 @@ const HomePage: React.FC = () => {
       <Text>Expo + expo-router стартовый экран</Text>
     </View>
   );
-};
+};  
 
 export default HomePage;
