@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import type { StyleProp, ViewStyle } from "react-native";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { StyleColor } from "./config";
 
 const ACCENT = "#4A85F6";
@@ -18,28 +18,43 @@ type Props = {
   type?: "button" | "submit" | "reset";
 };
 
-const colorStyles: Record<StyleColor, { container: ViewStyle; text: { color: string } }> = {
-  blue: { container: { backgroundColor: ACCENT }, text: { color: "#fff" } },
-  blueOutline: {
-    container: { backgroundColor: "transparent", borderWidth: 1, borderColor: ACCENT },
-    text: { color: ACCENT },
+const colorClasses: Record<StyleColor, { container: string; text: string }> = {
+  blue: {
+    container: "bg-[#4A85F6] border-0",
+    text: "text-white",
   },
-  gray: { container: { backgroundColor: "#f3f4f6" }, text: { color: "#374151" } },
-  red: { container: { backgroundColor: "#dc2626" }, text: { color: "#fff" } },
-  green: { container: { backgroundColor: "#16a34a" }, text: { color: "#fff" } },
+  blueOutline: {
+    container: "bg-transparent border border-[#4A85F6]",
+    text: "text-[#4A85F6]",
+  },
+  gray: {
+    container: "bg-gray-100 border-0",
+    text: "text-gray-700",
+  },
+  red: {
+    container: "bg-red-600 border-0",
+    text: "text-white",
+  },
+  green: {
+    container: "bg-green-600 border-0",
+    text: "text-white",
+  },
   greenOutline: {
-    container: { backgroundColor: "transparent", borderWidth: 1, borderColor: "#22c55e" },
-    text: { color: "#22c55e" },
+    container: "bg-transparent border border-green-500",
+    text: "text-green-500",
   },
   redOutline: {
-    container: { backgroundColor: "transparent", borderWidth: 1, borderColor: "#ef4444" },
-    text: { color: "#ef4444" },
+    container: "bg-transparent border border-red-500",
+    text: "text-red-500",
   },
   grayOutline: {
-    container: { backgroundColor: "transparent", borderWidth: 1, borderColor: "#6b7280" },
-    text: { color: "#6b7280" },
+    container: "bg-transparent border border-gray-500",
+    text: "text-gray-500",
   },
-  yellow: { container: { backgroundColor: "#fde047" }, text: { color: "#854d0e" } },
+  yellow: {
+    container: "bg-yellow-300 border-0",
+    text: "text-amber-800",
+  },
 };
 
 export const Button: React.FC<Props> = (props) => {
@@ -48,12 +63,12 @@ export const Button: React.FC<Props> = (props) => {
     onPress,
     disabled = false,
     style,
-    className,
+    className = "",
     styleColor = "blue",
     type = "button",
   } = props;
 
-  const colorSet = colorStyles[styleColor] ?? colorStyles.blue;
+  const colors = colorClasses[styleColor] ?? colorClasses.blue;
 
   const handlePress = () => {
     if (disabled) return;
@@ -62,53 +77,27 @@ export const Button: React.FC<Props> = (props) => {
 
   return (
     <Pressable
-      className={className}
+      className={
+        `
+          flex-row items-center justify-center px-4 py-2.5 rounded-lg min-h-11
+          ${colors.container}
+          ${disabled ? "opacity-60" : ""}
+          ${className}
+        `}
       disabled={disabled}
       onPress={handlePress}
-      style={({ pressed }) => [
-        styles.base,
-        colorSet.container,
-        disabled && styles.disabled,
-        pressed && !disabled && styles.pressed,
-        style,
-      ]}
+      style={style}
       accessibilityRole="button"
     >
       {typeof children === "string" ? (
-        <Text style={[styles.text, colorSet.text, disabled && styles.textDisabled]}>{children}</Text>
+        <Text
+          className={`text-base font-semibold ${colors.text} ${disabled ? "text-gray-400" : ""}`}
+        >
+          {children}
+        </Text>
       ) : (
-        <View style={styles.content}>{children}</View>
+        <View className={"flex-row items-center justify-center"}>{children}</View>
       )}
     </Pressable>
   );
 };
-
-const styles = StyleSheet.create({
-  base: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 8,
-    minHeight: 44,
-  },
-  content: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 16,
-    fontWeight: "600",
-  },
-  textDisabled: {
-    color: "#9ca3af",
-  },
-  disabled: {
-    opacity: 0.6,
-  },
-  pressed: {
-    opacity: 0.9,
-  },
-});

@@ -3,7 +3,14 @@ module.exports = {
   content: ["./packages/**/*.{js,jsx,ts,tsx}", "./src/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        custom: {
+          accent: "oklch(62.3% 0.214 259.815)",
+        }
+      },
+
+    },
   },
   plugins: [],
 }

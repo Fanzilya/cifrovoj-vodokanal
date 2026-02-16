@@ -29,7 +29,7 @@ export type InputTextType = {
     minValue?: number;
     maxValue?: number;
     lengthOptions?: { minLength?: number; maxLength?: number };
-
+    keyboardType?: string;
     onChange?: (value: string) => void;
     onFocus?: (focused: boolean) => void;
     readonly?: boolean;

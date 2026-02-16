@@ -1,75 +1,105 @@
-import { useCallback, useEffect } from "react"
-import type { MouseEvent } from "react"
-import PortalModal from "./portal"
-import { Icon } from "../icon"
-import type { ModalProps } from "./setting/type"
+import { Modal as RNModal, View, Text, TouchableOpacity, TouchableWithoutFeedback, KeyboardAvoidingView, Platform } from "react-native";
+import { useCallback, useEffect } from "react";
+import { Icon } from "../icon";
 
-export const Modal = ({ show, title, setShow, children, footerSlot, classNames, closeOnOverlay = false, type, wrapperId }: ModalProps) => {
+import type { ModalProps } from "./setting/type";
+
+export const Modal = ({
+    show,
+    title,
+    setShow,
+    children,
+    footerSlot,
+    classNames,
+    closeOnOverlay = false,
+    type = "center",
+    wrapperId,
+}: ModalProps) => {
     const handleClose = useCallback(() => {
-        setShow(false)
-    }, [setShow])
+        setShow(false);
+    }, [setShow]);
 
-    const handleKeyPress = useCallback(
-        (event: KeyboardEvent) => {
-            if (event.key === "Escape") handleClose()
-        },
-        [handleClose],
-    )
-
+    // Закрытие по нажатию Escape (на Android)
     useEffect(() => {
-        if (!show) return undefined
-        document.addEventListener("keydown", handleKeyPress)
-        return () => {
-            document.removeEventListener("keydown", handleKeyPress)
+        const onBackPress = () => {
+            if (show) {
+                handleClose();
+                return true; // предотвращаем выход из приложения
+            }
+            return false;
+        };
+
+        if (show && Platform.OS === "android") {
+            const subscription = require("react-native").BackHandler.addEventListener(
+                "hardwareBackPress",
+                onBackPress
+            );
+            return () => subscription.remove();
         }
-    }, [handleKeyPress, show])
+    }, [show, handleClose]);
 
-    if (!show) return null
+    if (!show) return null;
 
-    const stopPropagation = (event: MouseEvent<HTMLDivElement>) => {
-        event.stopPropagation()
-    }
+    // Определение стилей в зависимости от типа модального окна
+    const overlayClasses = classNames?.overlay ?? "bg-black/50";
+    const containerClasses = type === "center"
+        ? "flex-1 justify-center px-4"
+        : "flex-1 justify-end";
 
+    const panelClasses = type === "center"
+        ? "rounded-2xl max-h-[90%] mx-4 bg-white shadow-lg"
+        : "h-[90%] w-full bg-white rounded-t-2xl";
 
-    const classOverlay = (type == "center" && "flex items-center justify-center ") + (classNames?.overlay ?? "");
-    const classContainer = (type == "center" ? "justify-center px-4" : "justify-end ") + (classNames?.container ?? "");
-    const classPanel = (type == "center" ? "hidrex-modal-fade-in rounded-2xl max-h-[90vh] " : "hidrex-modal-slide-in-right relative h-screen ") + (classNames?.panel ?? "");
+    const headerClasses = classNames?.header ?? "flex-row items-center justify-between border-b border-gray-200 px-6 py-4";
+    const titleClasses = classNames?.title ?? "text-xl font-semibold text-gray-800";
+    const closeIconClasses = classNames?.close ?? "text-gray-500";
+
+    const contentClasses = classNames?.content ?? "flex-1";
+    const bodyClasses = classNames?.body ?? "px-4 py-3";
+    const footerClasses = classNames?.footer ?? "border-t border-gray-200 p-4 bg-gray-50";
 
     return (
-        <PortalModal wrapperId={wrapperId}>
-            <div className={`fixed inset-0 z-[60] bg-[#192038]/40 backdrop-blur-[1px] ${classOverlay}`} onClick={handleClose}>
-                <div className={`w-full flex ${classContainer}`}>
-                    <div className={`w-full overflow-hidden flex flex-col bg-white shadow-[0_20px_50px_rgba(16,24,40,0.25)] ${classPanel}`}
-                        role="dialog"
-                        aria-modal="true"
-                        onClick={stopPropagation}
-                    >
-                        <div className={`flex shrink-0 items-center justify-between border-b border-[#EFF4FA] px-6 py-4 ${classNames?.header ?? ""}`}>
-                            <span className={`text-xl font-semibold ${classNames?.title ?? ""}`}>{title}</span>
+        <RNModal
+            visible={show}
+            transparent={type === "center"}
+            animationType={type === "center" ? "fade" : "slide"}
+            onRequestClose={handleClose}
+            hardwareAccelerated
+        >
+            {/* Overlay */}
+            <TouchableWithoutFeedback onPress={closeOnOverlay ? handleClose : undefined}>
+                <View className={`absolute inset-0 ${overlayClasses}`} />
+            </TouchableWithoutFeedback>
+
+            {/* Container */}
+            <View className={containerClasses}>
+                {/* Panel */}
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === "ios" ? "padding" : "height"}
+                    className={panelClasses}
+                >
+                    {/* Header */}
+                    <View className={headerClasses}>
+                        <Text className={titleClasses}>{title}</Text>
+                        <TouchableOpacity onPress={handleClose} className="p-2">
                             <Icon
-                                className={`cursor-pointer text-[#8F9BB3] transition-opacity duration-200 hover:opacity-60 ${classNames?.close ?? ""}`}
                                 systemName="close"
                                 width={24}
                                 height={24}
-                                onClick={handleClose}
+                                className={closeIconClasses}
                             />
-                        </div>
+                        </TouchableOpacity>
+                    </View>
 
-                        <div className={`flex min-h-0 grow flex-col overflow-hidden ${classNames?.content ?? ""}`}>
-                            <div className={`min-h-0 grow overflow-auto ${classNames?.body ?? ""}`}>
-                                {children}
-                            </div>
-                        </div>
+                    {/* Content */}
+                    <View className={contentClasses}>
+                        <View className={bodyClasses}>{children}</View>
+                    </View>
 
-                        {footerSlot && (
-                            <div className={`shrink-0 border-t border-[#EFF4FA] ${classNames?.footer ?? ""}`}>
-                                {footerSlot}
-                            </div>
-                        )}
-
-                    </div>
-                </div>
-            </div>
-        </PortalModal>
-    )
-}
+                    {/* Footer */}
+                    {footerSlot ? <View className={footerClasses}>{footerSlot}</View> : null}
+                </KeyboardAvoidingView>
+            </View>
+        </RNModal>
+    );
+};

@@ -45,24 +45,24 @@ export const cartLinks: MenuItemType[] = [
 
 const MenuModulsView = observer(() => {
     return (
-        <View className="w-full max-w-[664px] bg-white rounded-2xl border border-gray-100 p-8 mx-auto shadow-lg">
+        <View className="w-full max-w-xs sm:max-w-md md:max-w-lg mx-auto bg-white rounded-2xl border border-gray-100 p-5 shadow-md">
             {/* Header */}
-            <View className="items-center mb-8">
-                <Text className="text-xl text-gray-600 mb-2 uppercase">Приветствуем в</Text>
-                <Text className="text-xl font-bold text-blue-600 uppercase">ИАС «ЦИФРОВОЙ ВОДОКАНАЛ»</Text>
+            <View className="items-center mb-6">
+                <Text className="text-lg text-gray-600 mb-1 uppercase font-medium">Приветствуем в</Text>
+                <Text className="text-xl text-center font-bold text-custom-accent uppercase">ИАС «ЦИФРОВОЙ ВОДОКАНАЛ»</Text>
             </View>
 
-            {/* Grid */}
-            <View className="flex flex-row flex-wrap justify-between gap-5">
+            {/* Grid: 1 column on small screens, 2 on medium+ */}
+            <View className="flex flex-row flex-wrap justify-between gap-4">
                 {cartLinks.map((item, index) => {
-                    const hasAccess = item.userIds.length > 0 && item.link.length > 0;
+                    const hasAccess = item.userIds.length > 0 && !!item.link;
 
                     if (hasAccess) {
                         return (
-                            <View key={index} className="w-[48%] min-w-[140px]">
+                            <View key={index} className="flex-1 min-w-[140px] max-w-full">
                                 <Link href={item.link as any} asChild>
-                                    <Pressable className="bg-blue-600 rounded-xl min-h-[100px] py-6 px-4 justify-center items-center shadow-md active:opacity-90">
-                                        <Text className="text-lg font-bold text-white text-center leading-tight" numberOfLines={2}>
+                                    <Pressable className="bg-custom-accent rounded-xl min-h-20 py-4 px-3 justify-center items-center shadow active:opacity-90">
+                                        <Text className="text-base font-semibold text-white text-center leading-tight" numberOfLines={2}>
                                             {item.name}
                                         </Text>
                                     </Pressable>
@@ -74,9 +74,9 @@ const MenuModulsView = observer(() => {
                     return (
                         <View
                             key={index}
-                            className="w-[48%] min-w-[140px] bg-gray-500 rounded-xl min-h-[100px] py-6 px-4 justify-center items-center opacity-70 shadow"
+                            className="flex-1 min-w-[140px] max-w-full bg-gray-500 rounded-xl min-h-20 py-4 px-3 justify-center items-center opacity-70"
                         >
-                            <Text className="text-lg font-bold text-white text-center leading-tight" numberOfLines={2}>
+                            <Text className="text-base font-semibold text-white text-center leading-tight" numberOfLines={2}>
                                 {item.name}
                             </Text>
                         </View>
@@ -86,6 +86,5 @@ const MenuModulsView = observer(() => {
         </View>
     );
 });
-
 
 export default MenuModulsView;
