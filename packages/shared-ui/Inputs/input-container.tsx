@@ -51,7 +51,7 @@ export const InputContainer: React.FC<InputContainerType> = (props) => {
 
 const styles = StyleSheet.create({
     wrapper: {
-        width: "100%",
+        flex: 1,
         marginBottom: 4,
     },
     header: {

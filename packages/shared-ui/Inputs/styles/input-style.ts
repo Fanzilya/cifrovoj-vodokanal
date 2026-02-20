@@ -26,7 +26,7 @@ const commonStyles = "text-base text-black rounded-lg border-2 rounded-lg bg-whi
 export const inputNotIconBaseClasses: string = (`py-2 px-2 ${commonStyles}`);
 export const passwordContainerStyle: string = (`flex-row items-center pr-2 ${commonStyles}`);
 
-export const passwordStyle: string = "py-2.5 px-2 ml-1 w-full";
+export const passwordStyle: string = "py-2.5 px-2 ml-1 flex-1";
 
 export const placeholderTextColor: string = "#9ca3af";
 export const iconColor: string = "#6b7280";

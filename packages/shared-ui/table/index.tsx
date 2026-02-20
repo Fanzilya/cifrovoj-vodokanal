@@ -1,65 +1,109 @@
-import { TableProps } from "./types";
-import { TableFooter } from "./components/TableFooter";
+import { useState } from "react";
+import { View, Text, TouchableOpacity, Modal, Pressable } from "react-native";
+import { Icon } from "../icon";
+import { TableFooterProps } from "./types";
 
-import { useTableColumns } from "./hooks/useTableColumns";
-import { useTableGridTemplate } from "./hooks/useTableGridTemplate";
-import { useTanstackTable } from "./hooks/useTanstackTable";
-import { useTableStorageState } from "./hooks/useTablуStorageState";
+export function TableFooter<T>({
+    table,
+    pageSizeOptions,
+    pageIndex,
+    pageSize,
+    onPageChange,
+    onPageSizeChange,
+}: TableFooterProps<T>) {
+    const [open, setOpen] = useState(false);
 
-import { TableHeader } from "./components/TableHeader";
-import { TableBody } from "./components/TableBody";
-import Loader from "../loader/loader";
+    const total = table.getFilteredRowModel().rows.length;
+    const start = pageIndex * pageSize;
+    const end = start + table.getRowModel().rows.length;
 
-export function Table<T>(props: TableProps<T>) {
-
-
-    const tableState = useTableStorageState({
-        tableId: props.id!,
-        defaultPageSize: 20,
-    });
-
-    const columns = useTableColumns(props.columns, props.countActive);
-    const gridTemplate = useTableGridTemplate(props.columns, props.countActive);
-
-    const table = useTanstackTable({
-        data: props.data,
-        columns,
-        pageIndex: tableState.pageIndex,
-        pageSize: tableState.pageSize,
-        onPaginationChange: (page, size) => {
-            tableState.setPageIndex(page);
-            tableState.setPageSize(size);
-        },
-    });
-
+    const canPrev = table.getCanPreviousPage();
+    const canNext = table.getCanNextPage();
 
     return (
-        <div className={`bg-white rounded-2xl shadow overflow-hidden border mb-10 ${props.classNames?.wrapper}`}>
-            <div className={"overflow-auto h-[80vh] " + props.classNames?.body}>
-                <table className={`min-w-[1100px] w-full ${props.classNames?.table}`}>
-                    <TableHeader table={table} gridTemplate={gridTemplate} />
-                    {props.isLoading ?
-                        <div className="mt-5"><Loader /></div>
-                        :
-                        <TableBody
-                            className={props.classNames?.tbody}
-                            table={table}
-                            gridTemplate={gridTemplate}
-                            onRowClick={props.onRowClick}
+        <View className="w-full pb-10 mt-5">
+            <View className="flex flex-row items-center gap-5 justify-center">
+                {/* PAGE SIZE LABEL */}
+                <Text className="text-[#717171] text-[14px]">
+                    Количество элементов на странице
+                </Text>
+
+                {/* PAGE SIZE SELECT */}
+                <View className="relative">
+                    <TouchableOpacity
+                        className="flex flex-row items-center border-b border-[#717171]"
+                        onPress={() => setOpen((v) => !v)}
+                    >
+                        <Text className="text-[#717171]">{pageSize}</Text>
+                        <Icon
+                            systemName="arrow-triangle"
+                            className={`ml-3 mb-1 transition-transform ${open ? "rotate-180" : ""}`}
                         />
-                    }
-                </table>
-            </div>
+                    </TouchableOpacity>
 
-            <TableFooter
-                table={table}
-                pageSizeOptions={props.options?.pageSize || [10, 20, 50, 100]}
-                pageIndex={tableState.pageIndex}
-                pageSize={tableState.pageSize}
-                onPageChange={tableState.setPageIndex}
-                onPageSizeChange={tableState.setPageSize}
-            />
+                    {/* Dropdown Modal */}
+                    <Modal
+                        visible={open}
+                        transparent
+                        animationType="none"
+                        onRequestClose={() => setOpen(false)}
+                    >
+                        <Pressable className="flex-1" onPress={() => setOpen(false)}>
+                            <View className="absolute bottom-10 right-0 bg-stone-50 rounded-lg shadow-lg p-2 z-10">
+                                {pageSizeOptions.map((size) => (
+                                    <Pressable
+                                        key={size}
+                                        className="py-2 px-4 hover:bg-gray-100"
+                                        onPress={() => {
+                                            onPageSizeChange(size);
+                                            onPageChange(0);
+                                            setOpen(false);
+                                        }}
+                                    >
+                                        <Text className="text-[#717171]">{size}</Text>
+                                    </Pressable>
+                                ))}
+                            </View>
+                        </Pressable>
+                    </Modal>
+                </View>
 
-        </div>
+                {/* RANGE */}
+                <Text className="text-[#717171] text-[14px]">
+                    {total === 0
+                        ? "0–0 из 0"
+                        : `${start + 1}-${Math.min(end, total)} из ${total}`}
+                </Text>
+
+                {/* PREV BUTTON */}
+                <TouchableOpacity
+                    className={`border rounded-md p-2 flex items-center ${!canPrev ? "opacity-40" : "opacity-100"
+                        }`}
+                    disabled={!canPrev}
+                    onPress={() => canPrev && onPageChange(pageIndex - 1)}
+                >
+                    <Icon
+                        width={12}
+                        height={12}
+                        systemName={`table-arrow${canPrev ? "-active" : ""}`}
+                        className="rotate-180"
+                    />
+                </TouchableOpacity>
+
+                {/* NEXT BUTTON */}
+                <TouchableOpacity
+                    className={`border rounded-md p-2 flex items-center ${!canNext ? "opacity-40" : "opacity-100"
+                        }`}
+                    disabled={!canNext}
+                    onPress={() => canNext && onPageChange(pageIndex + 1)}
+                >
+                    <Icon
+                        width={12}
+                        height={12}
+                        systemName={`table-arrow${canNext ? "-active" : ""}`}
+                    />
+                </TouchableOpacity>
+            </View>
+        </View>
     );
 }

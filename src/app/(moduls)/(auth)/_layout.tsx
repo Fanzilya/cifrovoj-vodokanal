@@ -14,7 +14,7 @@ export default function AuthLayout() {
                     <View className="absolute bottom-1/3 right-32 w-16 h-16 bg-white/20 rounded-full blur"></View>
                 </View>
 
-                <View className="flex-1 justify-center items-center p-4">
+                <View className="flex-1 justify-center items-center mt-8 p-4">
                     <View className="justify-center items-center bg-transparent mb-6">
                         <View className="items-center gap-3">
                             <View className="bg-white/20 backdrop-blur h-[50px] w-[50px] rounded-xl p-2 shadow-lg border border-white/30">

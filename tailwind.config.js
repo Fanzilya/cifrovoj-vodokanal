@@ -6,10 +6,9 @@ module.exports = {
     extend: {
       colors: {
         custom: {
-          accent: "oklch(62.3% 0.214 259.815)",
+          accent: "#4A85F6",
         }
       },
-
     },
   },
   plugins: [],

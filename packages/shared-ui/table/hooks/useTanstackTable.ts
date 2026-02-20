@@ -30,6 +30,5 @@ export const useTanstackTable = <T,>({ data, columns, pageIndex, pageSize, onPag
 
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
-
     });
 };
