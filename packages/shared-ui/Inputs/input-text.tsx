@@ -49,6 +49,7 @@ export const Input = (props: InputTextType) => {
                     editable={!props.disabled && !props.readonly}
                     keyboardType="phone-pad"
                     className={getContainerClasses(isFocused, props.isError, props.className)}
+                    underlineColorAndroid="transparent"
                     style={inputResetStyles}
                 />
             );
@@ -66,6 +67,7 @@ export const Input = (props: InputTextType) => {
                 secureTextEntry={props.type === "password"}
                 maxLength={props.lengthOptions?.maxLength}
                 className={getContainerClasses(isFocused, false, props.className)}
+                underlineColorAndroid="transparent"
                 style={inputResetStyles}
             />
         );

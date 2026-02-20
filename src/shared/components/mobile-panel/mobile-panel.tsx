@@ -1,7 +1,7 @@
 // src/shared/components/mobile-panel/mobile-panel.tsx
 import { View, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
-import { Icon } from "@packages/shared-ui/icon";
+import { Icon } from "@/packages/shared-ui/icon";
 
 type TabItem = {
     icon: string; // имя иконки
