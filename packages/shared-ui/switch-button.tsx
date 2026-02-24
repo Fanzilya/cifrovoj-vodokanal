@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Pressable, Text, View } from "react-native";
 
 interface SwitchButtonProps {
     classNames?: {
@@ -35,33 +36,35 @@ export const SwitchButton = ({
     };
 
     return (
-        <div
-            className={`flex items-center ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'} ${classNames?.container}`}
-            onClick={() => !disabled && handleClick}
+        <Pressable
+            className={`flex-row items-center ${disabled ? 'opacity-50' : ''} ${classNames?.container}`}
+            onPress={handleClick}
+            disabled={disabled}
         >
-            <div className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${classNames?.button}`}
+            <View
+                className={`w-12 h-6 rounded-full transition-colors duration-300 justify-center ${classNames?.button}`}
                 style={{
                     backgroundColor: checked ? "var(--clr-accent)" : "var(--clr-border-gray)",
                 }}
             >
-                <div
-                    className={`absolute w-5 left-1 top-0.8 h-5 rounded-full bg-white transition-all duration-300 shadow-sm ${classNames?.circle}`}
+                <View
+                    className={`w-5 h-5 rounded-full bg-white shadow-sm ${classNames?.circle}`}
                     style={{
-                        transform: checked ? 'translateX(80%)' : 'translateX(0%)',
+                        marginLeft: checked ? 24 : 2,
                     }}
                 />
-            </div>
+            </View>
 
             {label && (
-                <div
+                <Text
                     className={`ml-2 text-sm font-medium transition-colors duration-300 ${classNames?.label}`}
                     style={{
                         color: checked ? "var(--clr-accent, #3b82f6)" : "var(--clr-text, #374151)",
                     }}
                 >
                     {label}
-                </div>
+                </Text>
             )}
-        </div>
+        </Pressable>
     );
 };

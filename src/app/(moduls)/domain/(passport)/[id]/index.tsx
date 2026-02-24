@@ -1,10 +1,15 @@
+import { useLocalSearchParams } from "expo-router/build/hooks";
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 const DomainPassportIndexPage: React.FC = () => {
+
+  const { id } = useLocalSearchParams();
+
   return (
-    <View style={styles.container}>
+    <View style={styles.container} className="mt-10">
       <Text style={styles.text}>
+        Объект: {id}
         Выберите раздел паспорта объекта (документация, информация, участники и т.д.).
       </Text>
     </View>

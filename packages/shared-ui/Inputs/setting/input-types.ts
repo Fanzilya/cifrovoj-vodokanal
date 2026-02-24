@@ -50,7 +50,7 @@ export type SearchType = {
         maxLength: number
     };
 
-    classNames: {
+    classNames?: {
         container?: string;
         input?: string;
         icon?: string;

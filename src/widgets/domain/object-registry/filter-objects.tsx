@@ -3,7 +3,7 @@ import { Icon } from '@/packages/shared-ui/icon';
 import { Selector } from '@/packages/shared-ui/Selector/selector';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
-import { View, Text, TouchableOpacity, Modal, Pressable } from 'react-native';
+import { Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
 
 export const FilterObjects = observer(() => {
     const [open, setOpen] = useState(false);
@@ -28,10 +28,12 @@ export const FilterObjects = observer(() => {
                 />
             </TouchableOpacity>
 
-            {/* Modal */}
-            <Modal visible={open} transparent animationType="none">
-                <Pressable className="flex-1" onPress={() => setOpen(false)}>
-                    <View className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-72 rounded-xl bg-white shadow-lg border border-gray-200 p-4">
+            <Modal visible={open}
+                animationType="slide"
+                    presentationStyle="fullScreen"
+            >
+                <Pressable className="flex-1 w-full h-full bg-white p-4"   >
+                    <View className="">
                         {/* Title */}
                         <Text className="text-sm font-semibold text-gray-800 mb-4">Параметры фильтра</Text>
 
@@ -77,7 +79,10 @@ export const FilterObjects = observer(() => {
                             </Button>
                         </View>
                     </View>
-                </Pressable>
+                </ visible={open}
+                animationType="slide"
+                    presentationStyle="fullScreen"
+ressable>
             </Modal>
         </View>
     );

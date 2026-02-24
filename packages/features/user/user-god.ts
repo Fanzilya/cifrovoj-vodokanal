@@ -173,7 +173,7 @@ export class UserModel {
         // Здесь мы проверяем оба варианта
         const jwt = AsyncStorage.getItem(STORAGE_KEYS.JWT_TOKEN);
         const refresh = AsyncStorage.getItem(STORAGE_KEYS.REFRESH_TOKEN);
-        return jwt || refresh; // но лучше явно выбрать один источник
+        return jwt || refresh;
     }
 
     // Если нужно получить токен синхронно — нужно использовать async
