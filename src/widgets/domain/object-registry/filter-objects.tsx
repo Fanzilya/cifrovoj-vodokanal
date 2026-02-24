@@ -28,61 +28,49 @@ export const FilterObjects = observer(() => {
                 />
             </TouchableOpacity>
 
-            <Modal visible={open}
-                animationType="slide"
-                    presentationStyle="fullScreen"
-            >
-                <Pressable className="flex-1 w-full h-full bg-white p-4"   >
-                    <View className="">
-                        {/* Title */}
-                        <Text className="text-sm font-semibold text-gray-800 mb-4">Параметры фильтра</Text>
+            <Modal visible={open} animationType="slide" presentationStyle="fullScreen">
+                <View className="">
+                    <Text className="text-sm font-semibold text-gray-800 mb-4">Параметры фильтра</Text>
 
-                        {/* District Filter */}
-                        <View className="mb-4">
-                            <Text className="text-xs font-medium text-gray-500 mb-1">Район</Text>
-                            <Selector
-                                placeholder="Выберите район"
-                                titleClass="border flex p-2 rounded-lg"
-                                icon="arrow-down"
-                                items={[]}
-                            />
-                        </View>
-
-                        {/* Organization Filter */}
-                        <View className="mb-5">
-                            <Text className="text-xs font-medium text-gray-500 mb-1">Организация</Text>
-                            <Selector
-                                placeholder="Выберите организацию"
-                                titleClass="border flex p-2 rounded-lg"
-                                icon="arrow-down"
-                                items={[]}
-                            />
-                        </View>
-
-                        {/* Actions */}
-                        <View className="flex-row justify-between gap-2">
-                            <Button
-                                className="py-1 flex-1"
-                                styleColor="blueOutline"
-                            // onClick={() => {
-                            // Reset logic
-                            // }}
-                            >
-                                Сбросить
-                            </Button>
-                            <Button
-                                className="py-1 flex-1"
-                                styleColor="blue"
-                            // onClick={() => setOpen(false)}
-                            >
-                                Применить
-                            </Button>
-                        </View>
+                    <View className="mb-4">
+                        <Text className="text-xs font-medium text-gray-500 mb-1">Район</Text>
+                        <Selector
+                            placeholder="Выберите район"
+                            titleClass="border flex p-2 rounded-lg"
+                            icon="arrow-down"
+                            items={[]}
+                        />
                     </View>
-                </ visible={open}
-                animationType="slide"
-                    presentationStyle="fullScreen"
-ressable>
+
+                    <View className="mb-5">
+                        <Text className="text-xs font-medium text-gray-500 mb-1">Организация</Text>
+                        <Selector
+                            placeholder="Выберите организацию"
+                            titleClass="border flex p-2 rounded-lg"
+                            icon="arrow-down"
+                            items={[]}
+                        />
+                    </View>
+
+                    <View className="flex-row justify-between gap-2">
+                        <Button
+                            className="py-1 flex-1"
+                            styleColor="blueOutline"
+                        // onClick={() => {
+                        // Reset logic
+                        // }}
+                        >
+                            Сбросить
+                        </Button>
+                        <Button
+                            className="py-1 flex-1"
+                            styleColor="blue"
+                        // onClick={() => setOpen(false)}
+                        >
+                            Применить
+                        </Button>
+                    </View>
+                </View>
             </Modal>
         </View>
     );
