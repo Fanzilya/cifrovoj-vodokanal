@@ -1,7 +1,7 @@
-import { useCallback, useEffect } from "react"
 import type { MouseEvent } from "react"
-import PortalModal from "./portal"
+import { useCallback, useEffect } from "react"
 import { Icon } from "../icon"
+import PortalModal from "./portal"
 import type { ModalRightProps } from "./setting/type"
 
 export const ModalRight = ({

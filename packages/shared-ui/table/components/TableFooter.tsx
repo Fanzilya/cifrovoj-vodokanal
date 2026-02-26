@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { TableFooterProps } from "../types";
 import { Icon } from "../../icon";
+import { TableFooterProps } from "../types";
 
 export function TableFooter<T>({
     table,

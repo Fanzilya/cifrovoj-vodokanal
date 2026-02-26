@@ -8,19 +8,19 @@ const navLinks: {
     text: string,
     link: string,
     icon: string,
-    iconActive: string
+    type: string,
 }[] = [
         {
             text: "Карта",
             link: "/domain",
-            icon: "list-clipboard",
-            iconActive: "list-clipboard-white",
+            icon: "list-outline",
+            type: "ion",
         },
         {
             text: "Реестр",
             link: "/domain/registry-map",
             icon: "map",
-            iconActive: "map-white",
+            type: "ion",
         }
     ]
 
@@ -37,8 +37,10 @@ export const LayoutNavitgate = () => {
                         <TouchableOpacity className={`flex-1 items-center rounded-[20px] py-2 ${pathname === item.link ? 'bg-custom-accent' : 'text-gray-700'}`}>
                             <View className="w-6 h-6 mb-1">
                                 <Icon
-                                    systemName={pathname === item.link ? item.iconActive : item.icon}
+                                    type={item.type}
+                                    systemName={item.icon}
                                     width={30}
+                                    color={pathname === item.link ? 'white' : 'black'}
                                 />
                             </View>
                         </TouchableOpacity>

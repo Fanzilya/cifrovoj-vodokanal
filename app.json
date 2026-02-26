@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "cifrovoj-vodokanal",
+    "name": "Цифровой водоканал",
     "slug": "cifrovoj-vodokanal",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -14,12 +14,13 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "foregroundImage": "./assets/images/android-icon.png",
+        "backgroundImage": "./assets/images/android-icon.png",
+        "monochromeImage": "./assets/images/android-icon.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anonymous.cifrovojvodokanal"
     },
     "web": {
       "output": "static",
@@ -38,9 +39,9 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "163df7c9-6d07-43d6-bc13-fa6619c9eeba"
+        "projectId": "1bf81ef1-4ee7-42a5-a690-0e0b7bd90501"
       }
     },
-    "owner": "fanzilya994"
+    "owner": "azizbeck"
   }
 }

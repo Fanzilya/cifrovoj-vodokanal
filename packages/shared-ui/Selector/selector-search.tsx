@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Icon } from "../icon";
 import { useSearch } from "../Inputs/hooks/hook-search";
 import { Input } from "../Inputs/input-text";

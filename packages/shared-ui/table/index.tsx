@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, TouchableOpacity, Modal, Pressable } from "react-native";
+import { Modal, Pressable, Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "../icon";
 import { TableFooterProps } from "./types";
 

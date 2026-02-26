@@ -12,21 +12,13 @@ export const Search = (props: SearchType) => {
     };
 
     return (
-        <View
-            className={`items-center gap-1 w-full pr-3 flex-row gap-1 bg-white rounded-lg ${props.classNames.container}`}
+        <View className={`items-center gap-1 pr-3 flex-row gap-1 bg-white rounded-lg border border-gray-300 rounded-lg ${props.classNames.container}`}
             style={[
-                {
-                    shadowColor: "#000",
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: 0.1,
-                    shadowRadius: 3,
-                    elevation: isFocused ? 3 : 0,
-                },
                 props.style,
             ]}
         >
             <TextInput
-                className={`flex-1 pl-4 pr-1 py-3 text-[14px] ${props.classNames.input} ${props.disabled ? "bg-zinc-200" : ""
+                className={`flex-1 pl-4 pr-1 py-3 text-[14px] px-4 text-gray-800 text-sm ${props.classNames.input} ${props.disabled ? "bg-zinc-200" : ""
                     }`}
                 placeholder={props.placeholder}
                 editable={!props.disabled}
@@ -41,7 +33,7 @@ export const Search = (props: SearchType) => {
                 className={`${props.classNames.icon}`}
                 disabled={props.disabled}
             >
-                <Icon systemName={props.icon ? props.icon : "search-gray-dark"} height={25} />
+                <Icon systemName="search" size={25} />
             </Pressable>
         </View>
     );

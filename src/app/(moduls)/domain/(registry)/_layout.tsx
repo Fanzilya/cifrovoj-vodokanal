@@ -1,7 +1,6 @@
-import { Icon } from '@/packages/shared-ui/icon';
-import { Link, Stack } from 'expo-router';
+import { Stack } from 'expo-router';
 import { observer } from 'mobx-react-lite';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 
 const RegistryObjectsLayout = observer(() => {
   return (

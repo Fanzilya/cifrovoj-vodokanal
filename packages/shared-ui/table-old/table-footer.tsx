@@ -1,4 +1,3 @@
-import { Table } from "@tanstack/react-table";
 import { useState } from "react";
 import { Icon } from "../icon";
 import { TableFooterProps } from "./setting/types";

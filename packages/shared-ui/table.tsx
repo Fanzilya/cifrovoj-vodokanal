@@ -1,9 +1,9 @@
-import { ColumnDef, flexRender, getCoreRowModel, useReactTable, getPaginationRowModel } from "@tanstack/react-table";
-import { Icon } from "./icon";
+import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table";
+import { Guid } from 'guid-typescript';
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
+import { Icon } from "./icon";
 import SortFilterComponent from "./sorting-component";
-import { Guid } from 'guid-typescript';
 
 type Props = {
     data: any[];

@@ -23,43 +23,17 @@ const RegistryObjectsPage = observer(() => {
   return (
     <View className="flex-1 px-[20px] mt-[80px]">
       <View className="gap-4 mb-3">
-        <View className="flex-row items-center gap-1">
-          <View className="flex-1">
-            <Search
-              placeholder="Поиск по названию или организации..."
-              value={search}
-              onChange={setSearch}
-              classNames={{
-                container: 'border border-gray-300 rounded-lg',
-                input: 'px-4 text-gray-800 text-sm',
-              }}
-            />
-          </View>
+        <View className="flex-row gap-1">
           <FilterObjects />
-        </View>
 
-        <View className="flex-row items-center gap-2 pt-4 border-t border-gray-200">
-          <SwitchButton
-            label=""
-            onChange={() => { }}
+          <Search
+            placeholder="Поиск по названию или организации..."
+            value={search}
+            onChange={setSearch}
             classNames={{
-              container: 'gap-1',
-              button: 'w-[40px] rounded-[150px] bg-[#757575] p-[3px]',
-              circle: 'rounded-[150px] bg-white h-[18px] w-[18px]',
+              container: 'flex-1',
             }}
           />
-          <Text className="text-sm text-gray-700">Диспетчерская</Text>
-
-          <SwitchButton
-            label=""
-            onChange={() => { }}
-            classNames={{
-              container: 'gap-1',
-              button: 'w-[40px] rounded-[150px] bg-[#757575] p-[3px]',
-              circle: 'rounded-[150px] bg-white h-[18px] w-[18px]',
-            }}
-          />
-          <Text className="text-sm text-gray-700">Управление ЖБО</Text>
         </View>
       </View>
 

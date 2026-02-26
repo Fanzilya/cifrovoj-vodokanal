@@ -80,21 +80,9 @@ export const RegistryCard = ({ item }: Props) => {
                     <View>
                         {item.plcList.length > 0 ? (
                             item.plcList.map((plc, idx) => (
-                                <View
-                                    key={idx}
-                                    className={`flex-row items-center px-2 py-1 rounded-full mb-1 ${plc.status
-                                        ? 'bg-green-100 border border-green-200'
-                                        : 'bg-red-100 border border-red-200'
-                                        }`}
-                                >
-                                    <View
-                                        className={`w-2 h-2 rounded-full mr-2 ${plc.status ? 'bg-green-500' : 'bg-red-500'
-                                            }`}
-                                    />
-                                    <Text
-                                        className={`text-xs font-semibold ${plc.status ? 'text-green-800' : 'text-red-800'
-                                            }`}
-                                    >
+                                <View key={idx} className={`flex-row items-center px-2 py-1 rounded-full mb-1 ${plc.status ? 'bg-green-100 border border-green-200' : 'bg-red-100 border border-red-200'}`}>
+                                    <View className={`w-2 h-2 rounded-full mr-2 ${plc.status ? 'bg-green-500' : 'bg-red-500'}`} />
+                                    <Text className={`text-xs font-semibold ${plc.status ? 'text-green-800' : 'text-red-800'}`}>
                                         {PLC_LABELS[plc.plcId as keyof typeof PLC_LABELS] || `ПЛК-${plc.plcId}`}
                                     </Text>
                                 </View>

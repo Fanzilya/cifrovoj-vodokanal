@@ -1,3 +1,4 @@
+import { Colors } from '@/packages/design-tokens/colors';
 import { useAuth } from '@/packages/entities/user/context';
 import { Icon } from '@/packages/shared-ui/icon';
 import { Image, Text, View } from 'react-native';
@@ -18,7 +19,8 @@ export const HeaderMobile = () => {
 
             <View className="flex-1 items-center justify-end gap-3 sm:gap-4 md:gap-6 flex-row">
 
-                <Icon systemName="bell" />
+                {/* <Icon type='material' systemName="notifications-active" color={Colors.accent} /> */}
+                <Icon type='material' systemName="notifications" />
 
                 <View className="flex items-center flex-row gap-2 sm:gap-3">
                     <View className="h-8 w-px bg-[#C2C2C2]" />

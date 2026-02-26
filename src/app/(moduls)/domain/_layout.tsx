@@ -12,7 +12,6 @@ export default function DomainLayout() {
         <View className='flex-1 bg-gray-100'>
             <HeaderMobile />
             <View style={{ paddingBottom: 60 + insets.bottom }} className='flex-1'>
-
                 <Slot />
             </View>
             <LayoutNavitgate />

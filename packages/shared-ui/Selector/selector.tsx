@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
-import { useEffect, useRef, useState } from "react";
-import { View, Text, TouchableOpacity, Modal, Pressable } from "react-native";
+import { useRef, useState } from "react";
+import { Modal, Pressable, Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "../icon";
 import { SeletectItemInterface } from "./type";
 

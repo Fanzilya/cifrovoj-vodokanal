@@ -1,5 +1,5 @@
+import { useEffect, useRef, useState } from 'react';
 import { Icon } from '../icon/index';
-import { useState, useEffect, useRef } from 'react';
 
 type Props = {
     children: React.ReactNode,

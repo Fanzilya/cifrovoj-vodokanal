@@ -1,36 +1,36 @@
 import { Button } from '@/packages/shared-ui/button/button';
 import { Icon } from '@/packages/shared-ui/icon';
 import { Selector } from '@/packages/shared-ui/Selector/selector';
+import { SwitchButton } from '@/packages/shared-ui/switch-button';
+import { Ionicons } from '@expo/vector-icons';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
-import { Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, Text, TouchableOpacity, View } from 'react-native';
 
 export const FilterObjects = observer(() => {
-    const [open, setOpen] = useState(false);
+        const [open, setOpen] = useState(false);
 
     return (
-        <View className="relative ml-4">
-            {/* Trigger Button */}
-            <TouchableOpacity
-                onPress={() => setOpen((prev) => !prev)}
-                className={`flex flex-row items-center gap-2 px-3 py-2 rounded-lg border ${open
-                    ? 'bg-blue-50 border-blue-400'
-                    : 'bg-white border-gray-300 h-11'
-                    }`}
+        <View className='h-full'>
+            <TouchableOpacity onPress={() => setOpen((prev) => !prev)}
+                className={`flex-row items-center gap-2 px-3 py-2 rounded-lg border bg-white border-gray-300 h-11`}
             >
-                <Icon systemName={open ? 'filter-active' : 'filter'} />
-                <Text className={`text-sm font-medium ${open ? 'text-blue-700' : 'text-gray-600'}`}>
-                    Фильтр
-                </Text>
-                <Icon
-                    systemName="arrow-down"
-                    className={`${open ? 'rotate-180' : ''} transition-transform`}
-                />
+                <Icon systemName="filter" size={20} />
+                {/* <Text className={`text-sm font-medium text-gray-600`}>Фильтр</Text> */}
             </TouchableOpacity>
 
             <Modal visible={open} animationType="slide" presentationStyle="fullScreen">
-                <View className="">
+                <View className="p-4">
                     <Text className="text-sm font-semibold text-gray-800 mb-4">Параметры фильтра</Text>
+                    <TouchableOpacity className="text-sm font-semibold text-gray-800 mb-4">
+                        <Button onPress={() => setOpen(false)}>
+                            <Ionicons
+                                size={20}
+                                className='text-white'
+                                name="close"
+                            />
+                        </Button>
+                    </TouchableOpacity>
 
                     <View className="mb-4">
                         <Text className="text-xs font-medium text-gray-500 mb-1">Район</Text>
@@ -70,6 +70,35 @@ export const FilterObjects = observer(() => {
                             Применить
                         </Button>
                     </View>
+
+                    <View className="gap-2 pt-4 border-t border-gray-200">
+                        <View className='flex-row'>
+                            <SwitchButton
+                                label=""
+                                onChange={() => { }}
+                                classNames={{
+                                    container: 'gap-1',
+                                    button: 'w-[40px] rounded-[150px] bg-[#757575] p-[3px]',
+                                    circle: 'rounded-[150px] bg-white h-[18px] w-[18px]',
+                                }}
+                            />
+                            <Text className="text-sm text-gray-700">Диспетчерская</Text>
+                        </View>
+
+                        <View className='flex-row'>
+                            <SwitchButton
+                                label=""
+                                onChange={() => { }}
+                                classNames={{
+                                    container: 'gap-1',
+                                    button: 'w-[40px] rounded-[150px] bg-[#757575] p-[3px]',
+                                    circle: 'rounded-[150px] bg-white h-[18px] w-[18px]',
+                                }}
+                            />
+                            <Text className="text-sm text-gray-700">Управление ЖБО</Text>
+                        </View>
+                    </View>
+
                 </View>
             </Modal>
         </View>

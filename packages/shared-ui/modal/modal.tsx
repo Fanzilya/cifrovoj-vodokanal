@@ -1,5 +1,5 @@
-import { Modal as RNModal, View, Text, TouchableOpacity, TouchableWithoutFeedback, KeyboardAvoidingView, Platform } from "react-native";
 import { useCallback, useEffect } from "react";
+import { KeyboardAvoidingView, Platform, Modal as RNModal, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 import { Icon } from "../icon";
 
 import type { ModalProps } from "./setting/type";
@@ -40,11 +40,8 @@ export const Modal = ({
 
     if (!show) return null;
 
-    // Определение стилей в зависимости от типа модального окна
     const overlayClasses = classNames?.overlay ?? "bg-black/50";
-    const containerClasses = type === "center"
-        ? "flex-1 justify-center px-4"
-        : "flex-1 justify-end";
+    const containerClasses = type === "center" ? "flex-1 justify-center px-4" : "flex-1 justify-end";
 
     const panelClasses = type === "center"
         ? "rounded-2xl max-h-[90%] mx-4 bg-white shadow-lg"
@@ -82,12 +79,7 @@ export const Modal = ({
                     <View className={headerClasses}>
                         <Text className={titleClasses}>{title}</Text>
                         <TouchableOpacity onPress={handleClose} className="p-2">
-                            <Icon
-                                systemName="close"
-                                width={24}
-                                height={24}
-                                className={closeIconClasses}
-                            />
+                            <Icon systemName="close" />
                         </TouchableOpacity>
                     </View>
 

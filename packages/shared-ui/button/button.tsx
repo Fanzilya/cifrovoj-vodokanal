@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import type { StyleProp, ViewStyle } from "react-native";
 import { Pressable, Text, View } from "react-native";
 import { StyleColor } from "./config";
+import { Link } from "expo-router";
 
 const ACCENT = "#4A85F6";
 const ACCENT_DARK = "#3a6bc9";
@@ -13,9 +14,9 @@ type Props = {
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   className?: string;
+  href?: string;
   styleColor?: StyleColor;
-  /** Для совместимости с веб: передаётся в onPress */
-  type?: "button" | "submit" | "reset";
+  type?: "button" | "submit" | "link";
 };
 
 const colorClasses: Record<StyleColor, { container: string; text: string }> = {
@@ -57,16 +58,16 @@ const colorClasses: Record<StyleColor, { container: string; text: string }> = {
   },
 };
 
-export const Button: React.FC<Props> = (props) => {
-  const {
-    children,
-    onPress,
-    disabled = false,
-    style,
-    className = "",
-    styleColor = "blue",
-    type = "button",
-  } = props;
+export const Button: React.FC<Props> = ({
+  children,
+  onPress,
+  disabled = false,
+  style,
+  className = "",
+  styleColor = "blue",
+  href = "",
+  type = "button"
+}) => {
 
   const colors = colorClasses[styleColor] ?? colorClasses.blue;
 
@@ -75,6 +76,31 @@ export const Button: React.FC<Props> = (props) => {
     onPress?.();
   };
 
+  if (type == "link") {
+    return <Link
+      href={href}
+      className={
+        `
+          flex-row items-center justify-center text-center px-4 py-2.5 rounded-lg min-h-11 
+          ${colors.container}
+          ${disabled ? "opacity-60" : ""}
+          ${className}
+        `}
+      disabled={disabled}
+      onPress={handlePress}
+      accessibilityRole="button"
+    >
+      {typeof children === "string" ? (
+        <Text
+          className={`text-base font-semibold ${colors.text} ${disabled ? "text-gray-400" : ""}`}
+        >
+          {children}
+        </Text>
+      ) : (
+        <View className={"flex-row items-center justify-center"}>{children}</View>
+      )}
+    </Link>
+  }
   return (
     <Pressable
       className={
