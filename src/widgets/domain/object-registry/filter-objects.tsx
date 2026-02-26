@@ -2,13 +2,12 @@ import { Button } from '@/packages/shared-ui/button/button';
 import { Icon } from '@/packages/shared-ui/icon';
 import { Selector } from '@/packages/shared-ui/Selector/selector';
 import { SwitchButton } from '@/packages/shared-ui/switch-button';
-import { Ionicons } from '@expo/vector-icons';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { Modal, Text, TouchableOpacity, View } from 'react-native';
 
 export const FilterObjects = observer(() => {
-        const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
 
     return (
         <View className='h-full'>
@@ -19,59 +18,61 @@ export const FilterObjects = observer(() => {
                 {/* <Text className={`text-sm font-medium text-gray-600`}>Фильтр</Text> */}
             </TouchableOpacity>
 
-            <Modal visible={open} animationType="slide" presentationStyle="fullScreen">
+            <Modal visible={open} animationType="slide" presentationStyle="pageSheet">
                 <View className="p-4">
-                    <Text className="text-sm font-semibold text-gray-800 mb-4">Параметры фильтра</Text>
-                    <TouchableOpacity className="text-sm font-semibold text-gray-800 mb-4">
-                        <Button onPress={() => setOpen(false)}>
-                            <Ionicons
-                                size={20}
-                                className='text-white'
-                                name="close"
-                            />
-                        </Button>
-                    </TouchableOpacity>
+
+                    <View className='flex-row items-center w-full justify-between mb-4'>
+
+                        <Text className="text-xl font-semibold text-gray-900">Параметры фильтра</Text>
+                        <TouchableOpacity onPress={() => setOpen(false)}>
+                            <Icon size={25} systemName="close" />
+                        </TouchableOpacity>
+
+                    </View>
 
                     <View className="mb-4">
-                        <Text className="text-xs font-medium text-gray-500 mb-1">Район</Text>
+                        <Text className='text-[14px] font-semibold text-[#374151] mb-1'>
+                            Район
+                        </Text>
                         <Selector
                             placeholder="Выберите район"
-                            titleClass="border flex p-2 rounded-lg"
-                            icon="arrow-down"
-                            items={[]}
+                            items={[
+                                {
+                                    value: "1",
+                                    title: "1",
+                                },
+                                {
+                                    value: "2",
+                                    title: "2",
+                                },
+                            ]}
+
                         />
+                        {/* <Text className="text-xs font-medium text-gray-500 mb-1">Район</Text> */}
                     </View>
 
                     <View className="mb-5">
-                        <Text className="text-xs font-medium text-gray-500 mb-1">Организация</Text>
+                        <Text className='text-[14px] font-semibold text-[#374151] mb-1'>
+                            Организация
+                        </Text>
+
                         <Selector
                             placeholder="Выберите организацию"
-                            titleClass="border flex p-2 rounded-lg"
-                            icon="arrow-down"
-                            items={[]}
+                            items={[
+                                {
+                                    value: "1",
+                                    title: "1",
+                                },
+                                {
+                                    value: "2",
+                                    title: "2",
+                                },
+                            ]}
+
                         />
                     </View>
 
-                    <View className="flex-row justify-between gap-2">
-                        <Button
-                            className="py-1 flex-1"
-                            styleColor="blueOutline"
-                        // onClick={() => {
-                        // Reset logic
-                        // }}
-                        >
-                            Сбросить
-                        </Button>
-                        <Button
-                            className="py-1 flex-1"
-                            styleColor="blue"
-                        // onClick={() => setOpen(false)}
-                        >
-                            Применить
-                        </Button>
-                    </View>
-
-                    <View className="gap-2 pt-4 border-t border-gray-200">
+                    <View className="gap-2 py-5 flex-row border-t border-gray-200">
                         <View className='flex-row'>
                             <SwitchButton
                                 label=""
@@ -99,6 +100,25 @@ export const FilterObjects = observer(() => {
                         </View>
                     </View>
 
+
+                    <View className="flex-row justify-between gap-2">
+                        <Button
+                            className="py-1 flex-1"
+                            styleColor="blueOutline"
+                        // onClick={() => {
+                        // Reset logic
+                        // }}
+                        >
+                            Сбросить
+                        </Button>
+                        <Button
+                            className="py-1 flex-1"
+                            styleColor="blue"
+                        // onClick={() => setOpen(false)}
+                        >
+                            Применить
+                        </Button>
+                    </View>
                 </View>
             </Modal>
         </View>

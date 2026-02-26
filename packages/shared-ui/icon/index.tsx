@@ -18,6 +18,7 @@ export function Icon<T extends IconType = 'ion'>({
     systemName,
     size = 24,
     color = '#000',
+    className
 }: IconProps<T>) {
     const Component = ICON_MAP[type];
 
@@ -26,6 +27,7 @@ export function Icon<T extends IconType = 'ion'>({
             name={systemName as any}
             size={size}
             color={color}
+            className={className}
         />
     );
 }

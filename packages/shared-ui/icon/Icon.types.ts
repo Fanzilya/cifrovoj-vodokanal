@@ -19,6 +19,7 @@ export type IconName<T extends IconType> =
 export interface IconProps<T extends IconType = 'ion'> {
     type?: T;
     systemName: IconName<T>;
+    className?: string;
     size?: number;
     color?: string;
 }
