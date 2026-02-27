@@ -6,13 +6,13 @@ import { Input } from "@/packages/shared-ui/Inputs/input-text";
 import { Selector } from "@/packages/shared-ui/Selector/selector";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
-import { ServiceStageType } from "../../entities/service-requests/type";
-import { useAuth } from "../../entities/user/context";
-import { getDate } from "../../functions/get-data/get-date";
-import { Button } from "../../shared-ui/button/button";
-import { InputContainer } from "../../shared-ui/Inputs/input-container";
-import { Textarea } from "../../shared-ui/textarea";
-import { StageAction, stageActions } from "./stage-actions";
+import { ServiceStageType } from "../../../entities/service-requests/type";
+import { useAuth } from "../../../entities/user/context";
+import { getDate } from "../../../functions/get-data/get-date";
+import { Button } from "../../../shared-ui/button/button";
+import { InputContainer } from "../../../shared-ui/Inputs/input-container";
+import { Textarea } from "../../../shared-ui/textarea";
+import { StageAction, stageActions } from "../type/stage-actions";
 
 
 

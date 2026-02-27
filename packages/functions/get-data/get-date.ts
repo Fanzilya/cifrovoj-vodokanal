@@ -37,10 +37,10 @@ export function getDate(
         case 'monthNameYear':
             return dateObj
                 .toLocaleDateString('ru-RU', {
-                    month: 'long', // → 'декабрь'
-                    year: 'numeric', // → '2026'
+                    month: 'long',
+                    year: 'numeric',
                 })
-                .toLowerCase(); // чтобы было 'декабрь', а не 'Декабрь'
+                .toLowerCase();
 
         default:
             return dateObj

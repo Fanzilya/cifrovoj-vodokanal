@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Pressable, TextInput, View } from "react-native";
 import { Icon } from "../icon";
 import { SearchType } from "./setting/input-types";
+import { Colors } from "@/packages/design-tokens/colors";
 
 export const Search = (props: SearchType) => {
     const [isFocused, setIsFocused] = useState(false);
@@ -33,7 +34,7 @@ export const Search = (props: SearchType) => {
                 className={`${props.classNames.icon}`}
                 disabled={props.disabled}
             >
-                <Icon systemName="search" size={25} />
+                <Icon systemName="search" size={25} color={Colors.icon_gray} />
             </Pressable>
         </View>
     );

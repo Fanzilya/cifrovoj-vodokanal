@@ -5,7 +5,7 @@ import { CompleteCommonStageType, ServiceStageType } from "@/packages/entities/s
 import { supplyRequestStageAttachExpenses, supplyRequestStageAttachPay, supplyRequestStageCancel, supplyRequestStageComplete, supplyRequestStageConfirm, supplyRequestStageConfirmNoPay, supplyRequestStageResend, } from "@/packages/entities/supply-request/api";
 import { getCompanyUserRequest } from "@/packages/functions/get-data/get-company-user-request";
 import { getAnswerActions } from "@/packages/functions/get-data/get-stage-supply-switch-text";
-import { StageAction } from "@/packages/shared-components/stage/stage-actions";
+import { StageAction } from "@/packages/shared-components/stage/type/stage-actions";
 import { makeAutoObservable } from "mobx";
 import { toast } from "react-toastify";
 

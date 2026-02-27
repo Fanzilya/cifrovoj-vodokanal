@@ -1,6 +1,7 @@
 import { Stack } from 'expo-router';
 import { observer } from 'mobx-react-lite';
 import { View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const RegistryObjectsLayout = observer(() => {
   return (

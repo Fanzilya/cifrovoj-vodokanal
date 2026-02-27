@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAuth } from "./context";
 import { Role } from "./enums";
 
@@ -36,8 +37,16 @@ export const getRoleText = (role: number) => {
     }
 }
 
-export function getDostup() {
-    return JSON.parse(localStorage.getItem("userDostup"))
+export async function getDostup() {
+    try {
+        let data = await AsyncStorage.getItem("userDostup");
+        if (data === null) return null;
+        return JSON.parse(data);
+    } catch (error) {
+        console.error('Error getting dostup:', error);
+        return null;
+    }
+
 }
 
 export function isAdmin() {
@@ -47,5 +56,5 @@ export function isAdmin() {
 
 export function isJobRole() {
     const { user } = useAuth()
-    return user.baseRoleId === Role.Admin || user.baseRoleId === Role.Participant 
+    return user.baseRoleId === Role.Admin || user.baseRoleId === Role.Participant
 }

@@ -1,3 +1,4 @@
+import { Colors } from '@/packages/design-tokens/colors';
 import { Button } from '@/packages/shared-ui/button/button';
 import { Icon } from '@/packages/shared-ui/icon';
 import { Selector } from '@/packages/shared-ui/Selector/selector';
@@ -14,7 +15,7 @@ export const FilterObjects = observer(() => {
             <TouchableOpacity onPress={() => setOpen((prev) => !prev)}
                 className={`flex-row items-center gap-2 px-3 py-2 rounded-lg border bg-white border-gray-300 h-11`}
             >
-                <Icon systemName="filter" size={20} />
+                <Icon systemName="filter" color={Colors.icon_gray} size={20} />
                 {/* <Text className={`text-sm font-medium text-gray-600`}>Фильтр</Text> */}
             </TouchableOpacity>
 
@@ -72,32 +73,16 @@ export const FilterObjects = observer(() => {
                         />
                     </View>
 
-                    <View className="gap-2 py-5 flex-row border-t border-gray-200">
-                        <View className='flex-row'>
-                            <SwitchButton
-                                label=""
-                                onChange={() => { }}
-                                classNames={{
-                                    container: 'gap-1',
-                                    button: 'w-[40px] rounded-[150px] bg-[#757575] p-[3px]',
-                                    circle: 'rounded-[150px] bg-white h-[18px] w-[18px]',
-                                }}
-                            />
-                            <Text className="text-sm text-gray-700">Диспетчерская</Text>
-                        </View>
+                    <View className="gap-2 py-5 flex-row border-t border-gray-200 my-3 ">
+                        <SwitchButton
+                            label="Диспетчерская"
+                            onChange={() => { }}
+                        />
 
-                        <View className='flex-row'>
-                            <SwitchButton
-                                label=""
-                                onChange={() => { }}
-                                classNames={{
-                                    container: 'gap-1',
-                                    button: 'w-[40px] rounded-[150px] bg-[#757575] p-[3px]',
-                                    circle: 'rounded-[150px] bg-white h-[18px] w-[18px]',
-                                }}
-                            />
-                            <Text className="text-sm text-gray-700">Управление ЖБО</Text>
-                        </View>
+                        <SwitchButton
+                            label="Управление ЖБО"
+                            onChange={() => { }}
+                        />
                     </View>
 
 

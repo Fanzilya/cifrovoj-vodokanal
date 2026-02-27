@@ -5,9 +5,10 @@ import { CancelStageType, CompleteCommonStageType, CompleteEngineerStageType, Se
 import { supplyRequestStageAttachExpenses, supplyRequestStageAttachPay, supplyRequestStageCancel, supplyRequestStageComplete, supplyRequestStageConfirm, supplyRequestStageConfirmNoPay, supplyRequestStageResend } from "@/packages/entities/supply-request/api";
 import { getCompanyUserRequest } from "@/packages/functions/get-data/get-company-user-request";
 import { getAnswerActions } from "@/packages/functions/get-data/get-stage-supply-switch-text";
-import { StageAction } from "@/packages/shared-components/stage/stage-actions";
+import { StageAction } from "@/packages/shared-components/stage/type/stage-actions";
 import { makeAutoObservable } from "mobx";
-import { toast } from "react-toastify";
+import Toast from "react-native-toast-message";
+// import { toast } from "react-toastify";
 
 class ServiceStagesModel {
     model: ServiceStageType[] = []
@@ -32,7 +33,7 @@ class ServiceStagesModel {
 
     async init(id: number, userDD: any) {
         this.isLoaded = true
-        this.isEngener = userDD.isCommandsEnabled
+        this.isEngener = userDD.isCommandsEnabled || false
 
         try {
             const serviceRes = await getServiceStageRequestsAll({ id });
@@ -65,10 +66,16 @@ class ServiceStagesModel {
                     }
                     return item
                 })
-                toast.success("Заявка успешно завершена", { progressStyle: { background: "green" } })
+                Toast.show({
+                    type: 'success',
+                    text1: 'Заявка успешно завершена',
+                });
             })
             .catch((error) => {
-                toast.error(error.response.data, { progressStyle: { background: "red" } })
+                Toast.show({
+                    type: 'error',
+                    text1: 'Ошибка при завершении',
+                });
             })
     }
 
@@ -82,15 +89,18 @@ class ServiceStagesModel {
                     }
                     return item
                 })
-
-                toast.success("Заявка успешно отменена", { progressStyle: { background: "green" } })
+                Toast.show({
+                    type: 'success',
+                    text1: 'Заявка успешно отменена',
+                });
             })
             .catch((error) => {
-                toast.error(error.response.data, { progressStyle: { background: "red" } })
+                Toast.show({
+                    type: 'error',
+                    text1: error.response.data,
+                });
             })
     }
-
-
 
     async completePlanetServiceCommon(data: SimpleCompletePlanedServicesInstructionInterface) {
         try {

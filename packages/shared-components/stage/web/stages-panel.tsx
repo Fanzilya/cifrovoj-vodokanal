@@ -3,16 +3,16 @@ import { CompleteCancelType, ServiceForStageCardInterface } from "@/packages/ent
 import { useAuth } from "@/packages/entities/user/context";
 import { getDostup, isJobRole } from "@/packages/entities/user/utils";
 import { isStageSupplyTypes } from "@/packages/functions/is-value/is-stage-types";
-import { StageCard } from "@/packages/shared-components/stage/stage-card";
+import { StageCard } from "@/packages/shared-components/stage/web/stage-card";
 import { Button } from "@/packages/shared-ui/button/button";
 import { FileViewer } from "@/packages/shared-ui/file-viewer";
 import Loader from "@/packages/shared-ui/loader/loader";
 import { Modal } from "@/packages/shared-ui/modal/modal";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState } from "react";
-import { serviceStagesModel } from "../../../modules/dispatcher/features/service-stage/models/model";
 import { StageFormCreate } from "./stage-form-create";
 import { StageSupplyCard } from "./stage-supply-card";
+import { serviceStagesModel } from "@/src/features/dispatcher/service-stage/model";
 
 interface ServiceStagesPanelProps {
   show: boolean;

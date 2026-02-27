@@ -26,7 +26,7 @@ export type ModalProps = {
     classNames?: ModalClassNames;
     closeOnOverlay?: boolean;
     type: "center" | "right";
-    wrapperId: string;
+    wrapperId?: string;
 }
 
 

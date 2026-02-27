@@ -1,3 +1,5 @@
+import { Text } from "react-native";
+
 export const getStatusColor = (status: 'New' | 'Completed' | 'Canceled') => {
     let data = { color: '', text: '' };
 
@@ -16,9 +18,9 @@ export const getStatusColor = (status: 'New' | 'Completed' | 'Canceled') => {
     }
 
     return (
-        <span className={`px-2 py-1 rounded-full text-xs font-medium ${data.color}`}>
+        <Text className={`px-2 py-1 rounded-full text-xs font-medium ${data.color}`}>
             {data.text}
-        </span>
+        </Text>
     );
 };
 
@@ -47,9 +49,9 @@ export const getRequestTypeColor = (type: 'Общая' | "Общий" | 'Пос�
     }
 
     return (
-        <span className={`px-2 py-1 rounded-full text-xs font-medium ${data.color}`}>
+        <Text className={`px-2 py-1 rounded-full text-xs font-medium ${data.color}`}>
             {data.text}
-        </span>
+        </Text>
     );
 };
 

@@ -21,7 +21,9 @@ const RegistryObjectsPage = observer(() => {
   const listData = useMemo(() => results ?? [], [results]);
 
   return (
-    <View className="flex-1 px-[20px] mt-[80px]">
+    <View className="flex-1">
+
+      <Text className="text-2xl font-semibold mb-4">Реестр объектов</Text>
       <View className="gap-4 mb-3">
         <View className="flex-row gap-1">
           <FilterObjects />
@@ -36,7 +38,6 @@ const RegistryObjectsPage = observer(() => {
           />
         </View>
       </View>
-
 
       {isLoading ? (
         <View className="flex-1 justify-center items-center">

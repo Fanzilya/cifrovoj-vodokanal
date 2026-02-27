@@ -2,7 +2,7 @@ import { HeaderMobile } from '@/packages/shared-components/header/header-mobile'
 import { LayoutNavitgate } from '@/src/widgets/domain/object-registry/layout-navigate';
 import { Slot } from 'expo-router';
 import { View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function DomainLayout() {
 
@@ -10,8 +10,8 @@ export default function DomainLayout() {
 
     return (
         <View className='flex-1 bg-gray-100'>
-            <HeaderMobile />
-            <View style={{ paddingBottom: 60 + insets.bottom }} className='flex-1'>
+            {/* <HeaderMobile /> */}
+            <View style={{ paddingBottom: 60 + insets.bottom }} className='flex-1 px-[20px] mt-[40px]'>
                 <Slot />
             </View>
             <LayoutNavitgate />

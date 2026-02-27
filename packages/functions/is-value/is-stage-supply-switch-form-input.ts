@@ -1,4 +1,4 @@
-import { StageAction } from "@/packages/shared-components/stage/stage-actions"
+import { StageAction } from "@/packages/shared-components/stage/type/stage-actions"
 
 export function isDiscription(typeAction: StageAction | null) {
     switch (typeAction) {

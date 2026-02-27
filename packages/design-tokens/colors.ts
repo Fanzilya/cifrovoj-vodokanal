@@ -1,6 +1,7 @@
 export enum Colors {
     main = '#000000',
     secondary = '#FFFFFF',
+    icon_gray = '#8F8F8F',
     accent = 'rgb(74 133 246)',
 }
 

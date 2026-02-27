@@ -1,13 +1,13 @@
 import { EnginnerCancelPlanedServicesStageInterface, EnginnerCompletePlanedServicesStageInterface } from "@/packages/entities/planed-services/type";
 import { useState } from "react";
-import { CancelStageType, CompleteCommonStageType, CompleteEngineerStageType, ServiceStageType } from "../../entities/service-requests/type";
-import { useAuth } from "../../entities/user/context";
-import { getDostup, isJobRole } from "../../entities/user/utils";
-import { getDate } from "../../functions/get-data/get-date";
-import { Button } from "../../shared-ui/button/button";
-import { InputContainer } from "../../shared-ui/Inputs/input-container";
-import { Textarea } from "../../shared-ui/textarea";
-import { StageFileList } from "./stage-file-list";
+import { CancelStageType, CompleteCommonStageType, CompleteEngineerStageType, ServiceStageType } from "../../../entities/service-requests/type";
+import { useAuth } from "../../../entities/user/context";
+import { getDostup, isJobRole } from "../../../entities/user/utils";
+import { getDate } from "../../../functions/get-data/get-date";
+import { Button } from "../../../shared-ui/button/button";
+import { InputContainer } from "../../../shared-ui/Inputs/input-container";
+import { Textarea } from "../../../shared-ui/textarea";
+import { StageFileList } from "../stage-file-list";
 
 
 interface StageCardProps {
