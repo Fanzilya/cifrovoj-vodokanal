@@ -113,9 +113,7 @@ export const ServiceStagesPanel = observer(({ show, onClose, isService, complete
     {isLoaded ? <Loader /> : <View className="flex flex-col-reverse gap-2 p-6">
 
       <View className="absolute top-5 right-5">
-
         X
-
       </View>
 
       {model.length > 0 && model.map((stage, key) => (
@@ -157,20 +155,6 @@ export const ServiceStagesPanel = observer(({ show, onClose, isService, complete
           <Text className="text-gray-500 text-center">Нет этапов для отображения</Text>
         </View>
       )}
-
-      {/* {isActiveRequest && isJobRole() && (
-            isOpenForm ? (
-              <StageFormCreate
-                setIsOpenForm={setIsOpenForm}
-                pushStage={pushStage}
-                serviceData={isService}
-              />
-            ) : ( */}
-      <Button styleColor="blue" className="mb-4 py-2" onPress={() => setIsOpenForm(true)}>
-        Добавить этап
-      </Button>
-      {/* //   )
-          // )} */}
     </View>}
 
   </Modal>
