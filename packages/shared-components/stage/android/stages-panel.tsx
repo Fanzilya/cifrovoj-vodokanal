@@ -12,8 +12,9 @@ import { useEffect, useState } from "react";
 import { StageFormCreate } from "./stage-form-create";
 import { StageSupplyCard } from "./stage-supply-card";
 import { serviceStagesModel } from "@/src/features/dispatcher/service-stage/model";
-import { Modal, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { SvgXml } from "react-native-svg";
+import { Modal } from "@/packages/shared-ui/modal/mobile/modal";
 
 interface ServiceStagesPanelProps {
   show: boolean;
@@ -76,7 +77,13 @@ export const ServiceStagesPanel = observer(({ show, onClose, isService, complete
   const emptyIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>`;
 
 
-  return <Modal visible={show} animationType="slide" presentationStyle="pageSheet">
+  return <Modal
+    show={show}
+    setShow={onClose}
+    type="center"
+
+  // visible={show} animationType="slide" presentationStyle="pageSheet"
+  >
     {/* // showFilePanel ? <FileViewer fileId={showFileId} isOpen={showFilePanel} onClose={() => switchShowFile(0, false)} /> : */}
 
     {/* <Modal type="right" show={show} setShow={onClose} title="Этапы"
@@ -112,9 +119,6 @@ export const ServiceStagesPanel = observer(({ show, onClose, isService, complete
 
     {isLoaded ? <Loader /> : <View className="flex flex-col-reverse gap-2 p-6">
 
-      <View className="absolute top-5 right-5">
-        X
-      </View>
 
       {model.length > 0 && model.map((stage, key) => (
         isStageSupplyTypes(stage.stageType) ? (
